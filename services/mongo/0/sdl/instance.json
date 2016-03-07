@@ -1,0 +1,8 @@
+{
+    "name": "mongo",
+    "version": "3.2.3",
+    "vendor": "HPE",
+    "labels": ["mongo-server"],
+    "instance_id": "mongo-instance",
+    "description": "A sample mongo instance"
+}

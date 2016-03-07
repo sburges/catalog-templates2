@@ -1,0 +1,13 @@
+name: Mongo
+description: MongoDB Database.
+author: "Shayne Burgess"
+category: Database
+tags:
+  - database
+  - mongo
+metadata:
+  - first: sample
+
+type: local   #by-ref, passthrough
+
+default_service_version: 1
