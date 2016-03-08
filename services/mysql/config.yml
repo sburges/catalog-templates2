@@ -1,13 +1,8 @@
 name: MySQL
-description: MySQL Database.
-author: "Sushil Kumar"
+description: MySQL Database Server
 category: Database
 tags:
   - database
   - mysql
-metadata:
-  - first: sample
-
-type: local   #by-ref, passthrough
-
-default_service_version: 0
+type: local
+default_service_version: 1

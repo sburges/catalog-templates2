@@ -1,8 +1,0 @@
-{
-    "name": "k8-guestbook",
-    "version": "1.0.0",
-    "vendor": "Kubernetes",
-    "labels": ["guestbook-cluster-1"],
-    "instance_id": "my-guestbook",
-    "description": "A guestbook example cluster"
-}

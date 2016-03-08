@@ -1,8 +1,0 @@
-{
-    "name": "mysql",
-    "version": "5.5",
-    "vendor": "mysql",
-    "labels": ["mysql"],
-    "instance_id": "catalog-mysql",
-    "description": "A mysql example cluster"
-}
