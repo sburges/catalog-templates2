@@ -18,7 +18,7 @@
             "capabilities": ["ALL"],
             "depends_on": [],
             "affinity": [],
-            "labels": ["something"],
+            "labels": ["ServiceCatalog"],
             "min_instances": 1,
             "max_instances": 1,
             "service_ports": [

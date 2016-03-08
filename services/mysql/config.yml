@@ -1,10 +1,10 @@
-name: Mongo
-description: MongoDB Database.
-author: "Shayne Burgess"
+name: MySQL
+description: MySQL Database.
+author: "Sushil Kumar"
 category: Database
 tags:
   - database
-  - mongo
+  - mysql
 metadata:
   - first: sample
 

@@ -1,0 +1,11 @@
+name: GuestBook
+description: A sample guestbook
+author: "Shayne Burgess"
+category: SampleApplication
+tags:
+  - app
+  - samples
+metadata:
+  - first: sample
+
+type: local
