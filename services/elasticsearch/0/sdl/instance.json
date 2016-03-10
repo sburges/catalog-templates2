@@ -1,0 +1,8 @@
+{
+    "name": "elasticsearch",
+    "version": "2.2.0",
+    "vendor": "HPE",
+    "labels": ["elasticsearch-server"],
+    "instance_id": "es-instance",
+    "description": "A sample elasticsearch instance"
+}
