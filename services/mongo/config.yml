@@ -1,6 +1,5 @@
 name: Mongo
 description: MongoDB Database.
-author: "Shayne Burgess"
 category: Database
 tags:
   - database
