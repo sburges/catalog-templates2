@@ -3,7 +3,7 @@
 
 ### Info:
 
- This service creates MySQL with one instance
+ This service creates MySQL cluster with 3 MySQL instances.
 
 
 ### Usage:

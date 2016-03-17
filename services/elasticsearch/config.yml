@@ -1,6 +1,5 @@
 name: ElasticSearch
 description: Elasticsearch is a powerful open source search and analytics engine that makes data easy to explore.
-author: "Shayne Burgess"
 category: Search
 tags:
   - search

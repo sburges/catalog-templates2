@@ -1,9 +1,11 @@
-name: Mongo
-description: MongoDB Database.
+name: Percona Cluster
+description: Percona Galera Cluster
 category: Database
 tags:
   - database
-  - mongo
+  - mysql
+  - percona
+  - cluster
 metadata:
   - first: sample
 

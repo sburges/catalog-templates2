@@ -1,14 +1,14 @@
 {
     "name": "mysql",
-    "version": "5.5",
+    "version": "5.6",
     "vendor": "mysql",
     "components": [
         {
             "name": "mysql",
-            "version": "5.5",
+            "version": "5.6",
             "vendor": "mysql",
             "external_name": "mysql",
-            "image": "mysql/mysql-server:5.5",
+            "image": "mysql/mysql-server:5.6",
             "min_RAM_mb": 512,
             "min_disk_gb": 1,
             "min_VCPU": 1,
