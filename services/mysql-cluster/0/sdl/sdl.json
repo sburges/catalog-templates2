@@ -2,6 +2,26 @@
     "name": "mysql-cluster",
     "version": "5.6",
     "vendor": "percona",
+    "volumes": [
+        {
+            "name": "node1-volume",
+            "size_gb": 10,
+            "filesystem": "ext4",
+            "shared": false
+        },
+        {
+            "name": "node2-volume",
+            "size_gb": 10,
+            "filesystem": "ext4",
+            "shared": false
+        },
+        {
+            "name": "node3-volume",
+            "size_gb": 10,
+            "filesystem": "ext4",
+            "shared": false
+        }
+    ],
     "components": [
         {
             "name": "pxc-node1",
@@ -49,6 +69,12 @@
                     "source_port": 4568,
                     "target_port": 4568,
                     "public": false
+                }
+            ],
+            "volume_mounts": [
+                {
+                    "volume_name": "node1-volume",
+                    "mountpoint": "/var/lib/mysql"
                 }
             ],
             "parameters": [
@@ -158,6 +184,12 @@
                     "public": false
                 }
             ],
+            "volume_mounts": [
+                {
+                    "volume_name": "node2-volume",
+                    "mountpoint": "/var/lib/mysql"
+                }
+            ],
             "parameters": [
                 {
                     "name": "GALERA_CLUSTER",
@@ -263,6 +295,12 @@
                     "source_port": 4568,
                     "target_port": 4568,
                     "public": false
+                }
+            ],
+            "volume_mounts": [
+                {
+                    "volume_name": "node3-volume",
+                    "mountpoint": "/var/lib/mysql"
                 }
             ],
             "parameters": [
