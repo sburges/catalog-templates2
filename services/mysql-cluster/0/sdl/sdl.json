@@ -5,19 +5,19 @@
     "volumes": [
         {
             "name": "node1-volume",
-            "size_gb": 10,
+            "size_gb": 1,
             "filesystem": "ext4",
             "shared": false
         },
         {
             "name": "node2-volume",
-            "size_gb": 10,
+            "size_gb": 1,
             "filesystem": "ext4",
             "shared": false
         },
         {
             "name": "node3-volume",
-            "size_gb": 10,
+            "size_gb": 1,
             "filesystem": "ext4",
             "shared": false
         }
