@@ -139,7 +139,7 @@
         {
             "name": "pxc-node2",
             "version": "5.6",
-            "vendor": "mysql-cluster",
+            "vendor": "percona",
             "external_name": "pxc-node2",
             "image": "capttofu/percona_xtradb_cluster_5_6",
             "min_RAM_mb": 256,
