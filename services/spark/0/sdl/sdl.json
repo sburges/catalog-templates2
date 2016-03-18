@@ -1,0 +1,108 @@
+{
+    "name": "spark",
+    "version": "1.5.2",
+    "vendor": "Apache",
+    "components": [
+        { 
+            "name": "spark-master",
+            "version": "1.5.2",
+            "vendor": "Apache",
+            "external_name": "spark-master",
+            "image": "gcr.io/google_containers/spark-master",
+            "min_RAM_mb": 256,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": ["ALL"],
+            "depends_on": [],
+            "affinity": [],
+            "labels": ["spark"],
+            "min_instances": 1,
+            "max_instances": 1,
+            "retry_count": 5,
+            "service_ports": [
+                {
+                    "name": "web",
+                    "protocol": "TCP",
+                    "source_port": 8080,
+                    "target_port": 8080,
+                    "public": true
+                },
+                {
+                    "name": "sparkmaster",
+                    "protocol": "TCP",
+                    "source_port": 7077,
+                    "target_port": 7077,
+                    "public": false
+                }
+            ]
+        },
+        { 
+            "name": "spark-worker",
+            "version": "1.5.2",
+            "vendor": "Apache",
+            "external_name": "spark-worker",
+            "image": "gcr.io/google_containers/spark-worker",
+            "min_RAM_mb": 256,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": ["ALL"],
+            "depends_on": [],
+            "affinity": [],
+            "labels": ["spark"],
+            "min_instances": 2,
+            "max_instances": 10,
+            "retry_count": 5,
+            "service_ports": [
+                {
+                    "name": "spark",
+                    "protocol": "TCP",
+                    "source_port": 8888,
+                    "target_port": 8888,
+                    "public": false
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "SPARK_WORKER_PORT",
+                    "description": "SPARK_WORKER_PORT",
+                    "default": "8888",
+                    "example": "8888",
+                    "required": true,
+                    "secret": false
+                }
+            ]
+        },
+         { 
+            "name": "zeppelin",
+            "version": "0.5.6-incubating",
+            "vendor": "Apache",
+            "external_name": "zeppelin",
+            "image": "gcr.io/google_containers/zeppelin",
+            "min_RAM_mb": 256,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": ["ALL"],
+            "depends_on": [],
+            "affinity": [],
+            "labels": ["spark"],
+            "min_instances": 1,
+            "max_instances": 1,
+            "retry_count": 5,
+            "service_ports": [
+                {
+                    "name": "spark",
+                    "protocol": "TCP",
+                    "source_port": 8080,
+                    "target_port": 8080,
+                    "public": true
+                }
+            ]
+        }
+    ]
+}
