@@ -2,6 +2,26 @@
     "name": "mysql-cluster",
     "version": "5.6",
     "vendor": "percona",
+    "volumes": [
+        {
+            "name": "node1-volume",
+            "size_gb": 1,
+            "filesystem": "ext4",
+            "shared": false
+        },
+        {
+            "name": "node2-volume",
+            "size_gb": 1,
+            "filesystem": "ext4",
+            "shared": false
+        },
+        {
+            "name": "node3-volume",
+            "size_gb": 1,
+            "filesystem": "ext4",
+            "shared": false
+        }
+    ],
     "components": [
         {
             "name": "pxc-node1",
@@ -49,6 +69,12 @@
                     "source_port": 4568,
                     "target_port": 4568,
                     "public": false
+                }
+            ],
+            "volume_mounts": [
+                {
+                    "volume_name": "node1-volume",
+                    "mountpoint": "/var/lib/mysql"
                 }
             ],
             "parameters": [
@@ -113,7 +139,7 @@
         {
             "name": "pxc-node2",
             "version": "5.6",
-            "vendor": "mysql-cluster",
+            "vendor": "percona",
             "external_name": "pxc-node2",
             "image": "capttofu/percona_xtradb_cluster_5_6",
             "min_RAM_mb": 256,
@@ -156,6 +182,12 @@
                     "source_port": 4568,
                     "target_port": 4568,
                     "public": false
+                }
+            ],
+            "volume_mounts": [
+                {
+                    "volume_name": "node2-volume",
+                    "mountpoint": "/var/lib/mysql"
                 }
             ],
             "parameters": [
@@ -263,6 +295,12 @@
                     "source_port": 4568,
                     "target_port": 4568,
                     "public": false
+                }
+            ],
+            "volume_mounts": [
+                {
+                    "volume_name": "node3-volume",
+                    "mountpoint": "/var/lib/mysql"
                 }
             ],
             "parameters": [
