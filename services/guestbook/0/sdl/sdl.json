@@ -2,7 +2,110 @@
     "name": "k8-guestbook",
     "version": "1.0.0",
     "vendor": "Kubernetes",
-    "labels": ["guestbook-cluster-1"],
-    "instance_id": "my-guestbook",
-    "description": "A guestbook example cluster"
+    "volumes": [
+        {
+            "name": "redis-backup",
+            "size_gb": 10,
+            "filesystem": "ext4",
+            "shared": false
+        }
+    ],
+    "components": [
+        {
+            "name": "redis-master",
+            "version": "1.0.0",
+            "vendor": "Kubernetes",
+            "external_name": "redis-master",
+            "image": "redis",
+            "min_RAM_mb": 256,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": ["ALL"],
+            "affinity": [],
+            "labels": ["label1", "label2"],
+            "min_instances": 1,
+            "max_instances": 1,
+            "service_ports": [
+                {
+                    "name": "redis-master",
+                    "protocol": "TCP",
+                    "source_port": 6379,
+                    "target_port": 6379,
+                    "public": false
+                }
+            ],
+            "volume_mounts": [
+                {
+                    "volume_name": "redis-backup",
+                    "mountpoint": "/tmp/backup"
+                }
+            ]
+        },
+        {
+            "name": "redis-worker",
+            "version": "1.0.0",
+            "vendor": "Kubernetes",
+            "external_name": "redis-worker",
+            "image": "gcr.io/google_samples/gb-redisslave:v1",
+            "min_RAM_mb": 256,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": ["ALL"],
+            "affinity": [],
+            "labels": ["label1", "label2"],
+            "min_instances": 2,
+            "max_instances": 2,
+            "service_ports": [
+                {
+                    "name": "redis-worker",
+                    "protocol": "TCP",
+                    "source_port": 6379,
+                    "target_port": 6379,
+                    "public": false
+                }
+            ],
+            "volume_mounts": []
+        },
+        {
+            "name": "frontend",
+            "version": "1.0.0",
+            "vendor": "Kubernetes",
+            "external_name": "frontend",
+            "image": "gcr.io/google_samples/gb-frontend:v1",
+            "min_RAM_mb": 256,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": ["ALL"],
+            "affinity": [],
+            "labels": ["label1", "label2"],
+            "min_instances": 3,
+            "max_instances": 3,
+            "service_ports": [
+                {
+                    "name": "frontend",
+                    "protocol": "TCP",
+                    "source_port": 80,
+                    "target_port": 80,
+                    "public": true
+                }
+            ],
+            "volume_mounts": [],
+            "parameters": [
+                {
+                    "name": "GET_HOSTS_FROM",
+                    "description": "If your cluster config provides DNS, use the value 'dns' here, otherwise use 'env'",
+                    "default": "dns",
+                    "example": "dns",
+                    "required": true,
+                    "secret": false
+                }
+            ]
+        }
+    ]
 }
