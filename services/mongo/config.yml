@@ -1,12 +1,9 @@
 name: Mongo
 description: MongoDB Database.
-category: Database
-tags:
+categories:
+  - Database
+labels:
   - database
   - mongo
-metadata:
-  - first: sample
-
 type: local   #by-ref, passthrough
-
 default_service_version: 0

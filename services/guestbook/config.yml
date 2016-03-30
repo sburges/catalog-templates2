@@ -1,10 +1,8 @@
 name: GuestBook
 description: A sample guestbook
-category: SampleApplication
-tags:
+categories:
+  - SampleApplication
+labels:
   - app
   - samples
-metadata:
-  - first: sample
-
 type: local

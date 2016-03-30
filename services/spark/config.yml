@@ -1,13 +1,10 @@
 name: Spark Cluster
 description: Apache Spark Cluster
-category: Big Data
-tags:
+categories:
+  - Big Data
+labels:
   - bigdata
   - spark
   - apache
-metadata:
-  - first: sample
-
 type: local   #by-ref, passthrough
-
 default_service_version: 0
