@@ -1,7 +1,8 @@
 name: MySQL
 description: MySQL Database Server
-category: Database
-tags:
+categories:
+  - Database
+labels:
   - database
   - mysql
 type: local

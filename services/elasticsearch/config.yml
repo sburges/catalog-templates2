@@ -1,12 +1,9 @@
 name: ElasticSearch
 description: Elasticsearch is a powerful open source search and analytics engine that makes data easy to explore.
-category: Search
-tags:
+categories:
+  - Search
+labels:
   - search
   - ElasticSearch
-metadata:
-  - first: sample
-
 type: local   #by-ref, passthrough
-
 default_service_version: 0
