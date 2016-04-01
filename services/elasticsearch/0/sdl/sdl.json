@@ -16,7 +16,6 @@
             "platform": "linux-x86_64",
             "workload_type": "container",
             "capabilities": ["ALL"],
-            "depends_on": [],
             "affinity": [],
             "labels": ["ServiceCatalog"],
             "min_instances": 1,
