@@ -1,0 +1,9 @@
+name: FaceDetection
+description: The Face Detection API analyzes an image to find faces. It returns the position of the left and top edges of a bounding box that contains the face, and the width and height of the bounding box.
+categories:
+  - HavenOnDemand
+labels:
+  - ImageAnalysis
+  - FaceDetection
+type: local   #by-ref, passthrough
+default_service_version: 0
