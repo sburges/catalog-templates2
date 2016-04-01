@@ -1,4 +1,4 @@
-.PHONY: all clean coverage build test release tools
+.PHONY: help test
 
 default: help
 
