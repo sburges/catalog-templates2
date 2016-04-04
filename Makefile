@@ -7,5 +7,9 @@ help:
 	@echo
 	@echo "  test               Run the unit tests"
 
-test:
+tools:
+	go get github.com/xeipuuv/gojsonschema
+	go get github.com/stretchr/testify
+
+test: tools
 	go test ./... -v
