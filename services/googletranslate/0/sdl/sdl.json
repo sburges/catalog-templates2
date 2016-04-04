@@ -1,0 +1,52 @@
+{
+    "name": "google-translate",
+    "version": "1.0.1",
+    "vendor": "Google",
+    "components": [
+        {
+            "name": "google-translate",
+            "version": "1.0",
+            "vendor": "Google",
+            "external_name": "google-translate",
+            "image": "shayneb18/catalog-service-manager:base-1.0.1",
+            "min_RAM_mb": 512,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": ["ALL"],
+            "affinity": [],
+            "labels": ["google-translate"],
+            "min_instances": 1,
+            "max_instances": 1,
+            "retry_count": 5,
+            "service_ports": [
+                {
+                    "name": "csm-api",
+                    "protocol": "TCP",
+                    "source_port": 8081,
+                    "target_port": 8081,
+                    "public": true
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "API_KEY",
+                    "description": "API_KEY",
+                    "default": "KEY_NOT_SPECIFIED",
+                    "example": "YOUR_KEY",
+                    "required": true,
+                    "secret": false
+                },
+                {
+                    "name": "CSM_PARAMETERS",
+                    "description": "CSM_PARAMETERS",
+                    "default": "API_KEY",
+                    "example": "API_KEY",
+                    "required": true,
+                    "secret": false
+                }
+            ]
+        }
+    ]
+}
