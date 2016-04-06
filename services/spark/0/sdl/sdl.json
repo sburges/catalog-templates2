@@ -65,12 +65,7 @@
             ],
             "parameters": [
                 {
-                    "name": "SPARK_WORKER_PORT",
-                    "description": "SPARK_WORKER_PORT",
-                    "default": "8888",
-                    "example": "8888",
-                    "required": true,
-                    "secret": false
+                    "name": "SPARK_WORKER_PORT"
                 }
             ]
         },
@@ -100,6 +95,17 @@
                     "public": true
                 }
             ]
+        }
+    ],
+    "parameters": [
+        {
+            "name": "SPARK_WORKER_PORT",
+            "description": "SPARK_WORKER_PORT",
+            "default": "8888",
+            "example": "8888",
+            "data_type": "int32",
+            "required": true,
+            "secret": false
         }
     ]
 }

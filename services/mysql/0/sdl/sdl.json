@@ -16,7 +16,7 @@
             "workload_type": "container",
             "capabilities": ["ALL"],
             "affinity": [],
-            "labels": ["mysql"],
+            "labels": ["database"],
             "min_instances": 1,
             "max_instances": 1,
             "retry_count": 5,
@@ -31,14 +31,20 @@
             ],
             "parameters": [
                 {
-                    "name": "MYSQL_ROOT_PASSWORD",
-                    "description": "MYSQL_ROOT_PASSWORD",
-                    "default": "root123",
-                    "example": "root123",
-                    "required": true,
-                    "secret": false
+                    "name": "MYSQL_ROOT_PASSWORD"
                 }
             ]
+        }
+    ],
+    "parameters": [
+        {
+            "name": "MYSQL_ROOT_PASSWORD",
+            "description": "MYSQL_ROOT_PASSWORD",
+            "default": "root123",
+            "example": "root123",
+            "data_type": "string",
+            "required": true,
+            "secret": false
         }
     ]
 }

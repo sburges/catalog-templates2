@@ -13,6 +13,9 @@
     "volumes": {
         "type": "array"
     },
+    "parameters": {
+              "type": "array"
+          },
     "components": {
       "type": "array",
       "items": {

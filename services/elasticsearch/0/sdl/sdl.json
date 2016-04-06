@@ -28,8 +28,7 @@
                     "target_port": 9200,
                     "public": true
                 }
-            ],
-            "volume_mounts": []
+            ]
         }
     ]
 }

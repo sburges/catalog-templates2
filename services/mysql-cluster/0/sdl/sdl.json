@@ -78,60 +78,25 @@
             ],
             "parameters": [
                 {
-                    "name": "GALERA_CLUSTER",
-                    "description": "GALERA_CLUSTER",
-                    "default": "true",
-                    "example": "true",
-                    "required": true,
-                    "secret": false
+                    "name": "GALERA_CLUSTER"
                 },
                 {
-                    "name": "WSREP_CLUSTER_ADDRESS",
-                    "description": "WSREP_CLUSTER_ADDRESS",
-                    "default": "gcomm://",
-                    "example": "gcomm://",
-                    "required": true,
-                    "secret": false
+                    "name": "WSREP_CLUSTER_ADDRESS"
                 },
                 {
-                    "name": "WSREP_SST_USER",
-                    "description": "WSREP_SST_USER",
-                    "default": "sst",
-                    "example": "sst",
-                    "required": true,
-                    "secret": false
+                    "name": "WSREP_SST_USER"
                 },
                 {
-                    "name": "WSREP_SST_PASSWORD",
-                    "description": "WSREP_SST_PASSWORD",
-                    "default": "sst",
-                    "example": "sst",
-                    "required": true,
-                    "secret": false
+                    "name": "WSREP_SST_PASSWORD"
                 },
                 {
-                    "name": "MYSQL_USER",
-                    "description": "MYSQL_USER",
-                    "default": "mysql",
-                    "example": "mysql",
-                    "required": true,
-                    "secret": false
+                    "name": "MYSQL_USER"
                 },
                 {
-                    "name": "MYSQL_PASSWORD",
-                    "description": "MYSQL_PASSWORD",
-                    "default": "mysql",
-                    "example": "mysql",
-                    "required": true,
-                    "secret": false
+                    "name": "MYSQL_PASSWORD"
                 },
                 {
-                    "name": "MYSQL_ROOT_PASSWORD",
-                    "description": "MYSQL_ROOT_PASSWORD",
-                    "default": "c-krit",
-                    "example": "c-krit",
-                    "required": true,
-                    "secret": false
+                    "name": "MYSQL_ROOT_PASSWORD"
                 }
             ]
         },
@@ -190,60 +155,25 @@
             ],
             "parameters": [
                 {
-                    "name": "GALERA_CLUSTER",
-                    "description": "GALERA_CLUSTER",
-                    "default": "true",
-                    "example": "true",
-                    "required": true,
-                    "secret": false
+                    "name": "GALERA_CLUSTER"
                 },
                 {
-                    "name": "WSREP_CLUSTER_ADDRESS",
-                    "description": "WSREP_CLUSTER_ADDRESS",
-                    "default": "gcomm://",
-                    "example": "gcomm://",
-                    "required": true,
-                    "secret": false
+                    "name": "WSREP_CLUSTER_ADDRESS"
                 },
                 {
-                    "name": "WSREP_SST_USER",
-                    "description": "WSREP_SST_USER",
-                    "default": "sst",
-                    "example": "sst",
-                    "required": true,
-                    "secret": false
+                    "name": "WSREP_SST_USER"
                 },
                 {
-                    "name": "WSREP_SST_PASSWORD",
-                    "description": "WSREP_SST_PASSWORD",
-                    "default": "sst",
-                    "example": "sst",
-                    "required": true,
-                    "secret": false
+                    "name": "WSREP_SST_PASSWORD"
                 },
                 {
-                    "name": "MYSQL_USER",
-                    "description": "MYSQL_USER",
-                    "default": "mysql",
-                    "example": "mysql",
-                    "required": true,
-                    "secret": false
+                    "name": "MYSQL_USER"
                 },
                 {
-                    "name": "MYSQL_PASSWORD",
-                    "description": "MYSQL_PASSWORD",
-                    "default": "mysql",
-                    "example": "mysql",
-                    "required": true,
-                    "secret": false
+                    "name": "MYSQL_PASSWORD"
                 },
                 {
-                    "name": "MYSQL_ROOT_PASSWORD",
-                    "description": "MYSQL_ROOT_PASSWORD",
-                    "default": "c-krit",
-                    "example": "c-krit",
-                    "required": true,
-                    "secret": false
+                    "name": "MYSQL_ROOT_PASSWORD"
                 }
             ]
         },
@@ -302,62 +232,92 @@
             ],
             "parameters": [
                 {
-                    "name": "GALERA_CLUSTER",
-                    "description": "GALERA_CLUSTER",
-                    "default": "true",
-                    "example": "true",
-                    "required": true,
-                    "secret": false
+                    "name": "GALERA_CLUSTER"
                 },
                 {
-                    "name": "WSREP_CLUSTER_ADDRESS",
-                    "description": "WSREP_CLUSTER_ADDRESS",
-                    "default": "gcomm://",
-                    "example": "gcomm://",
-                    "required": true,
-                    "secret": false
+                    "name": "WSREP_CLUSTER_ADDRESS"
                 },
                 {
-                    "name": "WSREP_SST_USER",
-                    "description": "WSREP_SST_USER",
-                    "default": "sst",
-                    "example": "sst",
-                    "required": true,
-                    "secret": false
+                    "name": "WSREP_SST_USER"
                 },
                 {
-                    "name": "WSREP_SST_PASSWORD",
-                    "description": "WSREP_SST_PASSWORD",
-                    "default": "sst",
-                    "example": "sst",
-                    "required": true,
-                    "secret": false
+                    "name": "WSREP_SST_PASSWORD"
                 },
                 {
-                    "name": "MYSQL_USER",
-                    "description": "MYSQL_USER",
-                    "default": "mysql",
-                    "example": "mysql",
-                    "required": true,
-                    "secret": false
+                    "name": "MYSQL_USER"
                 },
                 {
-                    "name": "MYSQL_PASSWORD",
-                    "description": "MYSQL_PASSWORD",
-                    "default": "mysql",
-                    "example": "mysql",
-                    "required": true,
-                    "secret": false
+                    "name": "MYSQL_PASSWORD"
                 },
                 {
-                    "name": "MYSQL_ROOT_PASSWORD",
-                    "description": "MYSQL_ROOT_PASSWORD",
-                    "default": "c-krit",
-                    "example": "c-krit",
-                    "required": true,
-                    "secret": false
+                    "name": "MYSQL_ROOT_PASSWORD"
                 }
             ]
+        }
+    ],
+     "parameters": [
+        {
+            "name": "GALERA_CLUSTER",
+            "description": "GALERA_CLUSTER",
+            "default": "true",
+            "example": "true",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "WSREP_CLUSTER_ADDRESS",
+            "description": "WSREP_CLUSTER_ADDRESS",
+            "default": "gcomm://",
+            "example": "gcomm://",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "WSREP_SST_USER",
+            "description": "WSREP_SST_USER",
+            "default": "sst",
+            "example": "sst",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "WSREP_SST_PASSWORD",
+            "description": "WSREP_SST_PASSWORD",
+            "default": "sst",
+            "example": "sst",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "MYSQL_USER",
+            "description": "MYSQL_USER",
+            "default": "mysql",
+            "example": "mysql",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "MYSQL_PASSWORD",
+            "description": "MYSQL_PASSWORD",
+            "default": "mysql",
+            "example": "mysql",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "MYSQL_ROOT_PASSWORD",
+            "description": "MYSQL_ROOT_PASSWORD",
+            "default": "c-krit",
+            "example": "c-krit",
+            "data_type": "string",
+            "required": true,
+            "secret": false
         }
     ]
 }

@@ -1,15 +1,14 @@
 {
     "name": "mongo",
-    "version": "3.2.3",
+    "version": "3.2.4",
     "vendor": "HPE",
-    "volumes": [],
     "components": [
         {
             "name": "mongo-server",
-            "version": "3.2.3",
+            "version": "3.2.4",
             "vendor": "HPE",
             "external_name": "mongo",
-            "image": "192.168.99.100:5000/mongo",
+            "image": "mongo:3.2.4",
             "min_RAM_mb": 256,
             "min_disk_gb": 1,
             "min_VCPU": 1,
@@ -17,7 +16,7 @@
             "workload_type": "container",
             "capabilities": ["ALL"],
             "affinity": [],
-            "labels": ["ServiceCatalog"],
+            "labels": ["database"],
             "min_instances": 1,
             "max_instances": 1,
             "service_ports": [
@@ -28,8 +27,7 @@
                     "target_port": 27017,
                     "public": true
                 }
-            ],
-            "volume_mounts": []
+            ]
         }
     ]
 }
