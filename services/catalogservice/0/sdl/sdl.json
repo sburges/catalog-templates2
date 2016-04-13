@@ -1,0 +1,46 @@
+{
+    "name": "catalogservice",
+    "version": "1.0.0",
+    "vendor": "HPE",
+    "components": [
+        {
+            "name": "catalogapi",
+            "version": "1.0.0",
+            "vendor": "HPE",
+            "external_name": "catalogapi",
+            "image": "helioncf/catalog-server:latest",
+            "min_RAM_mb": 256,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": ["ALL"],
+            "min_instances": 3,
+            "max_instances": 5,
+            "service_ports": [
+                {
+                    "name": "catalog-api",
+                    "protocol": "TCP",
+                    "source_port": 8081,
+                    "target_port": 8081,
+                    "public": true
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "CATALOGS"
+                }
+            ]
+        }
+    ],
+    "parameters": [
+        {
+            "name": "CATALOGS",
+            "description": "CATALOGS",
+            "default": "-catalogs hpe-catalog;hpe-catalog:us-west-2;s3",
+            "example": "-catalogs hpe-catalog;hpe-catalog:us-west-2;s3",
+            "required": false,
+            "secret": false
+        }
+    ]
+}

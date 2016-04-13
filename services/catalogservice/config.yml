@@ -1,0 +1,9 @@
+name: Service Catalog
+description: The HPE Service Catalog for the Cloud Native Application Platform
+categories:
+  - HPE
+labels:
+  - catalog
+  - certified
+type: local
+default_service_version: 0
