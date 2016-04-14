@@ -6,3 +6,4 @@ labels:
   - app
   - samples
 type: local
+default_service_version: 0

@@ -5,5 +5,5 @@ categories:
 labels:
   - database
   - mongo
-type: local   #by-ref, passthrough
+type: local
 default_service_version: 0
