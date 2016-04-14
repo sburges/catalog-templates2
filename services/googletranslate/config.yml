@@ -3,5 +3,7 @@ description: Google's free online language translation service instantly transla
 categories:
   - Translation
 labels:
+  - Big Data
+  - Translation
 type: by-ref
 default_service_version: 0
