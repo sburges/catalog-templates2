@@ -1,0 +1,724 @@
+{
+  "name": "HelionCodeEngine",
+  "version": "1.0.0",
+  "vendor": "HPE",
+  "volumes": [
+    {
+      "name": "node1-volume",
+      "size_gb": 1,
+      "filesystem": "ext4",
+      "shared": false
+    },
+    {
+      "name": "node2-volume",
+      "size_gb": 1,
+      "filesystem": "ext4",
+      "shared": false
+    },
+    {
+      "name": "node3-volume",
+      "size_gb": 1,
+      "filesystem": "ext4",
+      "shared": false
+    },
+    {
+      "name": "artifact-volume",
+      "size_gb": 1,
+      "filesystem": "ext4",
+      "shared": true
+    },
+    {
+      "name": "hce-encryption-key-volume",
+      "size_gb": 1,
+      "filesystem": "ext4",
+      "shared": true
+    },
+    {
+      "name": "garden-worker-volume",
+      "size_gb": 30,
+      "filesystem": "ext4",
+      "shared": false
+    }
+  ],
+  "components": [
+    {
+      "name": "pxc-node1",
+      "version": "5.6",
+      "vendor": "percona",
+      "external_name": "pxc-node1",
+      "image": "capttofu/percona_xtradb_cluster_5_6",
+      "min_RAM_mb": 256,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "capabilities": [],
+      "labels": [
+        "pxc-node1",
+        "hce-db-cluster"
+      ],
+      "min_instances": 1,
+      "max_instances": 1,
+      "retry_count": 5,
+      "service_ports": [
+        {
+          "name": "mysql",
+          "protocol": "TCP",
+          "source_port": 3306,
+          "target_port": 3306,
+          "public": true
+        },
+        {
+          "name": "cluster-1",
+          "protocol": "TCP",
+          "source_port": 4444,
+          "target_port": 4444,
+          "public": false
+        },
+        {
+          "name": "cluster-2",
+          "protocol": "TCP",
+          "source_port": 4567,
+          "target_port": 4567,
+          "public": false
+        },
+        {
+          "name": "cluster-3",
+          "protocol": "TCP",
+          "source_port": 4568,
+          "target_port": 4568,
+          "public": false
+        }
+      ],
+      "volume_mounts": [
+        {
+          "volume_name": "node1-volume",
+          "mountpoint": "/var/lib/mysql"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "GALERA_CLUSTER"
+        },
+        {
+          "name": "WSREP_CLUSTER_ADDRESS"
+        },
+        {
+          "name": "WSREP_SST_USER"
+        },
+        {
+          "name": "WSREP_SST_PASSWORD"
+        },
+        {
+          "name": "MYSQL_USER"
+        },
+        {
+          "name": "MYSQL_PASSWORD"
+        },
+        {
+          "name": "MYSQL_DATABASE"
+        },
+        {
+          "name": "MYSQL_ROOT_PASSWORD"
+        }
+      ]
+    },
+    {
+      "name": "pxc-node2",
+      "version": "5.6",
+      "vendor": "percona",
+      "external_name": "pxc-node2",
+      "image": "capttofu/percona_xtradb_cluster_5_6",
+      "min_RAM_mb": 256,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "capabilities": [],
+      "labels": [
+        "pxc-node2",
+        "hce-db-cluster"
+      ],
+      "min_instances": 1,
+      "max_instances": 1,
+      "retry_count": 5,
+      "service_ports": [
+        {
+          "name": "mysql",
+          "protocol": "TCP",
+          "source_port": 3306,
+          "target_port": 3306,
+          "public": true
+        },
+        {
+          "name": "cluster-1",
+          "protocol": "TCP",
+          "source_port": 4444,
+          "target_port": 4444,
+          "public": false
+        },
+        {
+          "name": "cluster-2",
+          "protocol": "TCP",
+          "source_port": 4567,
+          "target_port": 4567,
+          "public": false
+        },
+        {
+          "name": "cluster-3",
+          "protocol": "TCP",
+          "source_port": 4568,
+          "target_port": 4568,
+          "public": false
+        }
+      ],
+      "volume_mounts": [
+        {
+          "volume_name": "node2-volume",
+          "mountpoint": "/var/lib/mysql"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "GALERA_CLUSTER"
+        },
+        {
+          "name": "WSREP_CLUSTER_ADDRESS"
+        },
+        {
+          "name": "WSREP_SST_USER"
+        },
+        {
+          "name": "WSREP_SST_PASSWORD"
+        },
+        {
+          "name": "MYSQL_USER"
+        },
+        {
+          "name": "MYSQL_PASSWORD"
+        },
+        {
+          "name": "MYSQL_DATABASE"
+        },
+        {
+          "name": "MYSQL_ROOT_PASSWORD"
+        }
+      ]
+    },
+    {
+      "name": "pxc-node3",
+      "version": "5.6",
+      "vendor": "percona",
+      "external_name": "pxc-node3",
+      "image": "capttofu/percona_xtradb_cluster_5_6",
+      "min_RAM_mb": 256,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "capabilities": [],
+      "labels": [
+        "pxc-node3",
+        "hce-db-cluster"
+      ],
+      "min_instances": 1,
+      "max_instances": 1,
+      "retry_count": 5,
+      "service_ports": [
+        {
+          "name": "mysql",
+          "protocol": "TCP",
+          "source_port": 3306,
+          "target_port": 3306,
+          "public": true
+        },
+        {
+          "name": "cluster-1",
+          "protocol": "TCP",
+          "source_port": 4444,
+          "target_port": 4444,
+          "public": false
+        },
+        {
+          "name": "cluster-2",
+          "protocol": "TCP",
+          "source_port": 4567,
+          "target_port": 4567,
+          "public": false
+        },
+        {
+          "name": "cluster-3",
+          "protocol": "TCP",
+          "source_port": 4568,
+          "target_port": 4568,
+          "public": false
+        }
+      ],
+      "volume_mounts": [
+        {
+          "volume_name": "node3-volume",
+          "mountpoint": "/var/lib/mysql"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "GALERA_CLUSTER"
+        },
+        {
+          "name": "WSREP_CLUSTER_ADDRESS"
+        },
+        {
+          "name": "WSREP_SST_USER"
+        },
+        {
+          "name": "WSREP_SST_PASSWORD"
+        },
+        {
+          "name": "MYSQL_USER"
+        },
+        {
+          "name": "MYSQL_PASSWORD"
+        },
+        {
+          "name": "MYSQL_DATABASE"
+        },
+        {
+          "name": "MYSQL_ROOT_PASSWORD"
+        }
+      ]
+    },
+    {
+      "name": "hce-rest",
+      "version": "1.0.0",
+      "vendor": "HPE",
+      "external_name": "hce-rest",
+      "image": "docker.io/helioncf/hce-rest-service:kosher-prod",
+      "min_RAM_mb": 256,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "capabilities": [],
+      "labels": [
+        "label1",
+        "label2"
+      ],
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "http",
+          "protocol": "TCP",
+          "source_port": 3001,
+          "target_port": 3001,
+          "public": true
+        }
+      ],
+      "volume_mounts": [
+        {
+          "volume_name": "artifact-volume",
+          "mountpoint": "/var/lib/artifacts"
+        },
+        {
+          "volume_name": "hce-encryption-key-volume",
+          "mountpoint": "/database"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "HCE_DB_HOST"
+        },
+        {
+          "name": "HCE_DB_USER"
+        },
+        {
+          "name": "HCE_DB_PASSWORD"
+        },
+        {
+          "name": "HCE_DB_NAME"
+        },
+        {
+          "name": "HCE_DOCKER_USERNAME"
+        },
+        {
+          "name": "HCE_DOCKER_PASSWORD"
+        },
+        {
+          "name": "HCE_DOCKER_EMAIL"
+        },
+        {
+          "name": "HCE_CONCOURSE_ENDPOINT"
+        },
+        {
+          "name": "HCE_API_HOST"
+        },
+        {
+          "name": "HCE_CONCOURSE_USERNAME"
+        },
+        {
+          "name": "HCE_CONCOURSE_PASSWORD"
+        }
+      ]
+    },
+    {
+      "name": "concourse-db",
+      "version": "1.0.0",
+      "vendor": "HPE",
+      "external_name": "concourse-db",
+      "image": "docker.io/postgres:9.5",
+      "min_RAM_mb": 256,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "capabilities": [],
+      "labels": [
+        "label1",
+        "label2"
+      ],
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "postgres",
+          "protocol": "TCP",
+          "source_port": 5432,
+          "target_port": 5432,
+          "public": false
+        }
+      ],
+      "volume_mounts": [],
+      "parameters": [
+        {
+          "name": "POSTGRES_DB"
+        },
+        {
+          "name": "POSTGRES_PASSWORD"
+        },
+        {
+          "name": "POSTGRES_USER"
+        },
+        {
+          "name": "PGDATA"
+        }
+      ]
+    },
+    {
+      "name": "concourse-web",
+      "version": "1.0.0",
+      "vendor": "HPE",
+      "external_name": "concourse-web",
+      "image": "docker.io/helioncf/hce-concourse-bin:1.0",
+      "entrypoint": [
+        "/root/scripts/start.sh",
+        "web"
+      ],
+      "min_RAM_mb": 512,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "capabilities": [],
+      "labels": [
+        "label1",
+        "label2"
+      ],
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "http",
+          "protocol": "TCP",
+          "source_port": 8080,
+          "target_port": 8080,
+          "public": true
+        },
+        {
+          "name": "tsa",
+          "protocol": "TCP",
+          "source_port": 2222,
+          "target_port": 2222,
+          "public": false
+        }
+      ],
+      "volume_mounts": [],
+      "parameters": [
+        {
+          "name": "HCE_CONCOURSE_USERNAME"
+        },
+        {
+          "name": "HCE_CONCOURSE_PASSWORD"
+        },
+        {
+          "name": "HCE_CONCOURSE_EXTERNAL_URL"
+        }
+      ]
+    },
+    {
+      "name": "concourse-worker",
+      "version": "1.0.0",
+      "vendor": "HPE",
+      "external_name": "concourse-worker",
+      "image": "docker.io/helioncf/hce-concourse-bin:1.0",
+      "entrypoint": [
+        "/root/scripts/start.sh",
+        "worker"
+      ],
+      "min_RAM_mb": 1024,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "capabilities": [
+        "ALL"
+      ],
+      "labels": [
+        "label1",
+        "label2"
+      ],
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "garden",
+          "protocol": "TCP",
+          "source_port": 7777,
+          "target_port": 7777,
+          "public": false
+        },
+        {
+          "name": "baggageclaim",
+          "protocol": "TCP",
+          "source_port": 7788,
+          "target_port": 7788,
+          "public": false
+        }
+      ],
+      "volume_mounts": [
+        {
+          "volume_name": "garden-worker-volume",
+          "mountpoint": "/opt/concourse/worker"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "parameters": [
+    {
+      "name": "POSTGRES_DB",
+      "description": "placeholder",
+      "default": "concourse",
+      "example": "concourse",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "POSTGRES_PASSWORD",
+      "description": "placeholder",
+      "default": "concourse_pass",
+      "example": "concourse_pass",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "POSTGRES_USER",
+      "description": "placeholder",
+      "default": "concourse_user",
+      "example": "concourse_user",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "PGDATA",
+      "description": "placeholder",
+      "default": "/database",
+      "example": "/database",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_DB_HOST",
+      "description": "placeholder",
+      "default": "pxc-node1",
+      "example": "pxc-node1",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_DB_USER",
+      "description": "placeholder",
+      "default": "ceuser",
+      "example": "ceuser",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_DB_PASSWORD",
+      "description": "placeholder",
+      "default": "cepassword",
+      "example": "cepassword",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_DB_NAME",
+      "description": "placeholder",
+      "default": "cisystem",
+      "example": "cisystem",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_DOCKER_USERNAME",
+      "description": "placeholder",
+      "default": "dockerhubuser",
+      "example": "dockerhubuser",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_DOCKER_PASSWORD",
+      "description": "placeholder",
+      "default": "dockerhubpassword",
+      "example": "dockerhubpassword",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_DOCKER_EMAIL",
+      "description": "placeholder",
+      "default": "user@dockerhub.com",
+      "example": "user@dockerhub.com",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_CONCOURSE_ENDPOINT",
+      "description": "placeholder",
+      "default": "http://concourse-web:8080/",
+      "example": "http://concourse-web:8080/",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_CONCOURSE_EXTERNAL_URL",
+      "description": "placeholder",
+      "default": "http://192.168.99.100:8080/",
+      "example": "http://192.168.99.100:8080/",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_API_HOST",
+      "description": "placeholder",
+      "default": "hce-rest",
+      "example": "hce-rest",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_CONCOURSE_USERNAME",
+      "description": "placeholder",
+      "default": "concourse-user",
+      "example": "concourse-user",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "HCE_CONCOURSE_PASSWORD",
+      "description": "placeholder",
+      "default": "concourse-password",
+      "example": "concourse-password",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "GALERA_CLUSTER",
+      "description": "GALERA_CLUSTER",
+      "default": "true",
+      "example": "true",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "WSREP_CLUSTER_ADDRESS",
+      "description": "WSREP_CLUSTER_ADDRESS",
+      "default": "gcomm://",
+      "example": "gcomm://",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "WSREP_SST_USER",
+      "description": "WSREP_SST_USER",
+      "default": "sst",
+      "example": "sst",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "WSREP_SST_PASSWORD",
+      "description": "WSREP_SST_PASSWORD",
+      "default": "sst",
+      "example": "sst",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "MYSQL_USER",
+      "description": "MYSQL_USER",
+      "default": "ceuser",
+      "example": "ceuser",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "MYSQL_PASSWORD",
+      "description": "MYSQL_PASSWORD",
+      "default": "cepassword",
+      "example": "cepassword",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "MYSQL_DATABASE",
+      "description": "MYSQL_DATABASE",
+      "default": "cisystem",
+      "example": "cisystem",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "MYSQL_ROOT_PASSWORD",
+      "description": "MYSQL_ROOT_PASSWORD",
+      "default": "rootpassword",
+      "example": "rootpassword",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    }
+  ]
+}
