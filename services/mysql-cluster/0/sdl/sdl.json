@@ -253,6 +253,42 @@
                     "name": "MYSQL_ROOT_PASSWORD"
                 }
             ]
+        },
+        {
+            "name": "csm-side-car",
+            "version": "latest",
+            "vendor": "HEP",
+            "external_name": "csm-side-car",
+            "image": "shayneb18/catalog-service-manager:mysql",
+            "min_RAM_mb": 512,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": ["ALL"],
+            "depends_on": [],
+            "affinity": [],
+            "labels": ["csm"],
+            "min_instances": 1,
+            "max_instances": 1,
+            "retry_count": 5,
+            "service_ports": [
+                {
+                    "name": "csm",
+                    "protocol": "TCP",
+                    "source_port": 8081,
+                    "target_port": 8081,
+                    "public": true
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "MYSQL_ROOT_PASSWORD"
+                },
+                {
+                    "name": "CSM_PARAMETERS"
+                }
+            ]
         }
     ],
      "parameters": [
