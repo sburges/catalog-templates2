@@ -1,0 +1,10 @@
+name: AmazonRDSMySQL
+description: Amazon RDS MySQL Database Server
+categories:
+  - Database
+labels:
+  - database
+  - mysql
+  - aws
+type: by-ref
+default_service_version: 0
