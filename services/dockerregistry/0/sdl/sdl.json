@@ -1,0 +1,32 @@
+{
+    "name": "dockerregistry",
+    "version": "2.3.1",
+    "vendor": "Docker",
+    "components": [
+        {
+            "name": "registry",
+            "version": "2.3.1",
+            "vendor": "HPE",
+            "external_name": "registry",
+            "image": "registry:2.3.1",
+            "min_RAM_mb": 256,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": ["ALL"],
+            "labels": ["Registry"],
+            "min_instances": 1,
+            "max_instances": 1,
+            "service_ports": [
+                {
+                    "name": "registry",
+                    "protocol": "TCP",
+                    "source_port": 5000,
+                    "target_port": 5000,
+                    "public": true
+                }
+            ]
+        }
+    ]
+}
