@@ -7,4 +7,4 @@ labels:
   - big data
   - database
 type: local   #by-ref, passthrough
-default_service_version: 0
+default_service_version: 7.1.1
