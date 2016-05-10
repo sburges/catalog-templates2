@@ -7,4 +7,4 @@ labels:
   - spark
   - apache
 type: local
-default_service_version: 0
+default_service_version: 1.5.2
