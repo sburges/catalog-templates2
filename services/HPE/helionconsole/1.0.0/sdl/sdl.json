@@ -1,0 +1,219 @@
+{
+  "name": "cnap-console",
+  "version": "1.0.0",
+  "vendor": "HPE",
+  "volumes": [
+    {
+      "name": "data",
+      "size_gb": 10,
+      "filesystem": "ext4",
+      "shared": false
+    }
+  ],
+  "components": [
+    {
+      "name": "db",
+      "version": "1.0.0",
+      "vendor": "HPE",
+      "external_name": "db",
+      "image": "helioncf/cnap-console-db",
+      "min_RAM_mb": 256,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "cnap-console-db",
+          "protocol": "TCP",
+          "source_port": 3306,
+          "target_port": 3306,
+          "public": true
+        }
+      ],
+      "volume_mounts": [
+        {
+          "volume_name": "data",
+          "mountpoint": "/var/lib/mysql"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "MYSQL_ROOT_PASSWORD"
+        },
+        {
+          "name": "MYSQL_DATABASE"
+        },
+        {
+          "name": "MYSQL_USER"
+        },
+        {
+          "name": "MYSQL_PASSWORD"
+        }
+      ]
+    },
+    {
+      "name": "cf-service",
+      "version": "1.0.0",
+      "vendor": "HPE",
+      "external_name": "cf-service",
+      "image": "helioncf/cnap-console-mock-api",
+      "min_RAM_mb": 256,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "mock-api",
+          "protocol": "TCP",
+          "source_port": 3002,
+          "target_port": 3002,
+          "public": true
+        }
+      ]
+    },
+    {
+      "name": "auth-service",
+      "version": "1.0.0",
+      "vendor": "HPE",
+      "external_name": "auth-service",
+      "image": "helioncf/cnap-console-mock-auth",
+      "min_RAM_mb": 256,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "mock-auth",
+          "protocol": "TCP",
+          "source_port": 3001,
+          "target_port": 3001,
+          "public": true
+        }
+      ]
+    },
+    {
+      "name": "stratos-node-server",
+      "version": "1.0.0",
+      "vendor": "HPE",
+      "external_name": "stratos-node-server",
+      "image": "helioncf/cnap-console-api",
+      "min_RAM_mb": 256,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "api",
+          "protocol": "TCP",
+          "source_port": 3000,
+          "target_port": 3000,
+          "public": true
+        }
+      ],
+      "parameters": [
+        {
+          "name": "PORT"
+        },
+        {
+          "name": "MYSQL_ROOT_PASSWORD"
+        },
+        {
+          "name": "MYSQL_DATABASE"
+        },
+        {
+          "name": "MYSQL_USER"
+        },
+        {
+          "name": "MYSQL_PASSWORD"
+        }
+      ]
+    },
+    {
+      "name": "cnap-console-nginx",
+      "version": "1.0.0",
+      "vendor": "HPE",
+      "external_name": "cnap-console-nginx",
+      "image": "helioncf/cnap-console-server",
+      "min_RAM_mb": 256,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "workload_type": "container",
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "api",
+          "protocol": "TCP",
+          "source_port": 80,
+          "target_port": 80,
+          "public": true
+        },
+        {
+          "name": "api-443",
+          "protocol": "TCP",
+          "source_port": 443,
+          "target_port": 443,
+          "public": true
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "name": "MYSQL_ROOT_PASSWORD",
+      "description": "Root password for MySQL",
+      "example": "stratos",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "MYSQL_DATABASE",
+      "description": "Database name for MySQL",
+      "default": "stratos-db",
+      "example": "stratos-db",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "MYSQL_USER",
+      "description": "Username for MySQL",
+      "default": "stratos",
+      "example": "stratos",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "MYSQL_PASSWORD",
+      "description": "Password for MySQL",
+      "example": "stratos",
+      "data_type": "string",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "PORT",
+      "description": "Port number to expose the API on",
+      "default": "3000",
+      "example": "3000",
+      "data_type": "string",
+      "required": false,
+      "secret": false
+    }
+  ]
+}

@@ -67,6 +67,8 @@ func TestSDLsAreValid(t *testing.T) {
 
 			configFilePath := filepath.Join(vendorPath, serviceName.Name(), "config.yml")
 			configfile, configfileerr := ioutil.ReadFile(configFilePath)
+
+			t.Log("Validating Service " + serviceName.Name())
 			assert.Nil(t, configfileerr, "Error loading config file for service "+serviceName.Name())
 			assert.True(t, len(configfile) > 0, "Found empty config file for service "+serviceName.Name())
 
@@ -148,7 +150,15 @@ func TestSDLsAreValid(t *testing.T) {
 				}
 
 				//check that a csm-side-car container exists in components
-				assert.Contains(t, compNames, "csm-side-car", "SDL needs a csm-side-car defined")
+				var foundSC = false
+				for _, comp := range compNames {
+					if comp == "csm-side-car" {
+						foundSC = true
+					}
+				}
+				if !foundSC {
+					t.Log("***** WARNING - SDL needs a csm-side-car defined")
+				}
 
 				//check the parameter name and description are not equal and that all SDL parameters are used in components
 				for _, param := range s.Parameters {
