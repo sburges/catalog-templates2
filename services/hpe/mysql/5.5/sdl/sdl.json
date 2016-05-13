@@ -1,0 +1,98 @@
+{
+    "name": "mysql",
+    "version": "5.5",
+    "vendor": "HPE",
+    "components": [
+        {
+            "name": "mysql",
+            "version": "5.5",
+            "vendor": "mysql",
+            "external_name": "mysql",
+            "image": "mysql/mysql-server:5.5",
+            "min_RAM_mb": 512,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": [
+                "ALL"
+            ],
+            "affinity": [],
+            "labels": [
+                "mysql"
+            ],
+            "min_instances": 1,
+            "max_instances": 1,
+            "retry_count": 5,
+            "service_ports": [
+                {
+                    "name": "mysql",
+                    "protocol": "TCP",
+                    "source_port": 3306,
+                    "target_port": 3306,
+                    "public": true
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "MYSQL_ROOT_PASSWORD"
+                }
+            ]
+        },
+        {
+            "name": "csm-side-car",
+            "version": "latest",
+            "vendor": "HPE",
+            "external_name": "csm-side-car",
+            "image": "docker-registry.helion.space:443/service-catalog/csm-mysql:latest",
+            "min_RAM_mb": 256,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": [],
+            "labels": [
+                "csm"
+            ],
+            "min_instances": 1,
+            "max_instances": 1,
+            "service_ports": [
+                {
+                    "name": "csm",
+                    "protocol": "TCP",
+                    "source_port": 8081,
+                    "target_port": 8081,
+                    "public": true
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "CSM_API_KEY"
+                },
+                {
+                    "name": "MYSQL_ROOT_PASSWORD"
+                }
+            ]
+        }
+    ],
+    "parameters": [
+        {
+            "name": "MYSQL_ROOT_PASSWORD",
+            "description": "MYSQL_ROOT_PASSWORD",
+            "default": "root123",
+            "example": "root123",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "CSM_API_KEY",
+            "description": "CSM_API_KEY",
+            "default": "csm-auth-token",
+            "example": "csm-auth-token",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        }
+    ]
+}
