@@ -22,9 +22,12 @@
             "min_VCPU": 1,
             "platform": "linux-x86_64",
             "workload_type": "container",
-            "capabilities": ["ALL"],
+            "capabilities": [],
             "affinity": [],
-            "labels": ["vertica", "bigdata"],
+            "labels": [
+                "vertica",
+                "bigdata"
+            ],
             "min_instances": 1,
             "max_instances": 1,
             "retry_count": 5,

@@ -1,123 +1,123 @@
 {
-  "type": "object",
-  "properties": {
-    "name": {
-      "type": "string"
-    },
-    "version": {
-      "type": "string"
-    },
-    "vendor": {
-      "type": "string"
-    },
-    "volumes": {
-        "type": "array"
-    },
-    "parameters": {
-              "type": "array"
-          },
-    "components": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
+    "type": "object",
+    "properties": {
+        "name": {
             "type": "string"
-          },
-          "version": {
-            "type": "string"
-          },
-          "vendor": {
-            "type": "string"
-          },
-          "external_name": {
-            "type": "string"
-          },
-          "image": {
-            "type": "string"
-          },
-          "min_RAM_mb": {
-            "type": "integer"
-          },
-          "min_disk_gb": {
-            "type": "integer"
-          },
-          "min_VCPU": {
-            "type": "integer"
-          },
-          "platform": {
-            "type": "string"
-          },
-          "workload_type": {
-            "type": "string"
-          },
-          "capabilities": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "min_instances": {
-            "type": "integer"
-          },
-          "max_instances": {
-            "type": "integer"
-          },
-          "affinity": {
-              "type": "array"
-          },
-          "labels": {
-              "type": "array"
-          },
-          "volume_mounts": {
-              "type": "array"
-          },
-          "parameters": {
-              "type": "array"
-          },
-          "retry_count": {
-              "type": "integer"
-          },
-          "service_ports": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "protocol": {
-                  "type": "string"
-                },
-                "source_port": {
-                  "type": "integer"
-                },
-                "target_port": {
-                  "type": "integer"
-                },
-                "public": {
-                  "type": "boolean"
-                }
-              }
-            }
-          }
         },
-        "required": [
-            "name",
-            "version",
-            "vendor",
-            "external_name",
-            "image"
-        ],
-        "additionalProperties": false
-      }
-    }
-  },
-  "required": [
-    "name",
-    "version",
-    "vendor",
-    "components"
-  ],
-  "additionalProperties": false
+        "version": {
+            "type": "string"
+        },
+        "vendor": {
+            "type": "string"
+        },
+        "volumes": {
+            "type": "array"
+        },
+        "parameters": {
+            "type": "array"
+        },
+        "components": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    },
+                    "vendor": {
+                        "type": "string"
+                    },
+                    "external_name": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "min_RAM_mb": {
+                        "type": "integer"
+                    },
+                    "min_disk_gb": {
+                        "type": "integer"
+                    },
+                    "min_VCPU": {
+                        "type": "integer"
+                    },
+                    "platform": {
+                        "type": "string"
+                    },
+                    "workload_type": {
+                        "type": "string"
+                    },
+                    "capabilities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "min_instances": {
+                        "type": "integer"
+                    },
+                    "max_instances": {
+                        "type": "integer"
+                    },
+                    "affinity": {
+                        "type": "array"
+                    },
+                    "labels": {
+                        "type": "array"
+                    },
+                    "volume_mounts": {
+                        "type": "array"
+                    },
+                    "parameters": {
+                        "type": "array"
+                    },
+                    "retry_count": {
+                        "type": "integer"
+                    },
+                    "service_ports": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "protocol": {
+                                    "type": "string"
+                                },
+                                "source_port": {
+                                    "type": "integer"
+                                },
+                                "target_port": {
+                                    "type": "integer"
+                                },
+                                "public": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "name",
+                    "version",
+                    "vendor",
+                    "external_name",
+                    "image"
+                ],
+                "additionalProperties": false
+            }
+        }
+    },
+    "required": [
+        "name",
+        "version",
+        "vendor",
+        "components"
+    ],
+    "additionalProperties": false
 }

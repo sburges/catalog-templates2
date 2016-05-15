@@ -34,9 +34,7 @@
             "min_VCPU": 1,
             "platform": "linux-x86_64",
             "workload_type": "container",
-            "capabilities": [
-                "ALL"
-            ],
+            "capabilities": [],
             "affinity": [],
             "labels": [
                 "pxc-node1",
@@ -116,9 +114,7 @@
             "min_VCPU": 1,
             "platform": "linux-x86_64",
             "workload_type": "container",
-            "capabilities": [
-                "ALL"
-            ],
+            "capabilities": [],
             "affinity": [],
             "labels": [
                 "pxc-node2",
@@ -198,9 +194,7 @@
             "min_VCPU": 1,
             "platform": "linux-x86_64",
             "workload_type": "container",
-            "capabilities": [
-                "ALL"
-            ],
+            "capabilities": [],
             "affinity": [],
             "labels": [
                 "pxc-node3",
