@@ -22,9 +22,7 @@
             "min_VCPU": 1,
             "platform": "linux-x86_64",
             "workload_type": "container",
-            "capabilities": [
-                "ALL"
-            ],
+            "capabilities": [],
             "labels": [
                 "cassandra"
             ],

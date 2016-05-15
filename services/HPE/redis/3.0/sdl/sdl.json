@@ -22,9 +22,11 @@
             "min_VCPU": 1,
             "platform": "linux-x86_64",
             "workload_type": "container",
-            "capabilities": ["ALL"],
+            "capabilities": [],
             "affinity": [],
-            "labels": ["redis"],
+            "labels": [
+                "redis"
+            ],
             "min_instances": 1,
             "max_instances": 1,
             "retry_count": 5,
