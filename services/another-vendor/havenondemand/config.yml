@@ -1,8 +1,0 @@
-name: Haven On Demand
-description: Haven On Demand is a collection of APIs for rapid development, high performance, and massive scalability.
-categories:
-  - HavenOnDemand
-labels:
-  - RestApi
-type: by-ref
-default_service_version: 1.0
