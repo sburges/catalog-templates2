@@ -1,7 +1,7 @@
 {
     "name": "cassandra",
     "version": "3.3",
-    "vendor": "HPE",
+    "vendor": "another-vendor",
     "volumes": [
         {
             "name": "data-volume",
