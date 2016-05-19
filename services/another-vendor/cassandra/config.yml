@@ -1,0 +1,9 @@
+name: Cassandra
+description: Apache Cassandra is an open source distributed database management system designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure.
+categories:
+  - Database
+labels:
+  - database
+  - cassandra
+type: local
+default_service_version: 3.3
