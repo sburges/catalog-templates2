@@ -76,8 +76,7 @@
     "parameters": [
         {
             "name": "MYSQL_ROOT_PASSWORD",
-            "description": "MYSQL_ROOT_PASSWORD",
-            "default": "root123",
+            "description": "Root password for MySQL",
             "example": "root123",
             "data_type": "string",
             "required": true,
@@ -85,7 +84,7 @@
         },
         {
             "name": "CSM_API_KEY",
-            "description": "CSM_API_KEY",
+            "description": "CSM side-car api key",
             "default": "csm-auth-token",
             "example": "csm-auth-token",
             "data_type": "string",
