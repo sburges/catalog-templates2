@@ -262,12 +262,49 @@
                     "name": "MYSQL_ROOT_PASSWORD"
                 }
             ]
+        },
+        {
+            "name": "csm-side-car",
+            "version": "1.0",
+            "vendor": "HPE",
+            "external_name": "mysql-cluster-csm-side-car",
+            "image": "docker-registry.helion.space:443/service-catalog/catalog-service-manager:latest",
+            "min_RAM_mb": 512,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": [],
+            "affinity": [],
+            "labels": [
+                "mysql-cluster"
+            ],
+            "min_instances": 1,
+            "max_instances": 1,
+            "retry_count": 5,
+            "service_ports": [
+                {
+                    "name": "csm-api",
+                    "protocol": "TCP",
+                    "source_port": 8081,
+                    "target_port": 8081,
+                    "public": true
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "CSM_API_KEY"
+                },
+                {
+                    "name": "CSM_PARAMETERS"
+                }
+            ]
         }
     ],
     "parameters": [
         {
             "name": "GALERA_CLUSTER",
-            "description": "GALERA_CLUSTER",
+            "description": "Use Galera Clustering or not",
             "default": "true",
             "example": "true",
             "data_type": "string",
@@ -276,7 +313,7 @@
         },
         {
             "name": "WSREP_CLUSTER_ADDRESS",
-            "description": "WSREP_CLUSTER_ADDRESS",
+            "description": "Address for connecting to the other nodes in the cluster",
             "default": "gcomm://",
             "example": "gcomm://",
             "data_type": "string",
@@ -285,7 +322,7 @@
         },
         {
             "name": "WSREP_SST_USER",
-            "description": "WSREP_SST_USER",
+            "description": "Replication user for State Snapshot Transfers between nodes",
             "default": "sst",
             "example": "sst",
             "data_type": "string",
@@ -294,8 +331,7 @@
         },
         {
             "name": "WSREP_SST_PASSWORD",
-            "description": "WSREP_SST_PASSWORD",
-            "default": "sst",
+            "description": "Replication password for State Snapshot Transfers between nodes",
             "example": "sst",
             "data_type": "string",
             "required": true,
@@ -303,7 +339,7 @@
         },
         {
             "name": "MYSQL_USER",
-            "description": "MYSQL_USER",
+            "description": "Normal user for MySQL",
             "default": "mysql",
             "example": "mysql",
             "data_type": "string",
@@ -312,8 +348,7 @@
         },
         {
             "name": "MYSQL_PASSWORD",
-            "description": "MYSQL_PASSWORD",
-            "default": "mysql",
+            "description": "Password for MySQL normal user",
             "example": "mysql",
             "data_type": "string",
             "required": true,
@@ -321,9 +356,25 @@
         },
         {
             "name": "MYSQL_ROOT_PASSWORD",
-            "description": "MYSQL_ROOT_PASSWORD",
-            "default": "c-krit",
+            "description": "Root password for MySQL",
             "example": "c-krit",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "CSM_PARAMETERS",
+            "description": "Parameters for the csm side-car to use application endpoint",
+            "example": "API_KEY",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "CSM_API_KEY",
+            "description": "CSM side-car api key",
+            "default": "csm-auth-token",
+            "example": "csm-auth-token",
             "data_type": "string",
             "required": true,
             "secret": false

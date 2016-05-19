@@ -33,7 +33,7 @@
             ],
             "parameters": [
                 {
-                    "name": "API_KEY"
+                    "name": "CSM_API_KEY"
                 },
                 {
                     "name": "CSM_PARAMETERS"
@@ -43,19 +43,18 @@
     ],
     "parameters": [
         {
-            "name": "API_KEY",
-            "description": "API_KEY",
-            "default": "KEY_NOT_SPECIFIED",
-            "example": "YOUR_KEY",
+            "name": "CSM_PARAMETERS",
+            "description": "Parameters for the csm side-car to use application endpoint",
+            "example": "API_KEY",
             "data_type": "string",
             "required": true,
             "secret": false
         },
         {
-            "name": "CSM_PARAMETERS",
-            "description": "CSM_PARAMETERS",
-            "default": "API_KEY",
-            "example": "API_KEY",
+            "name": "CSM_API_KEY",
+            "description": "CSM side-car api key",
+            "default": "csm-auth-token",
+            "example": "csm-auth-token",
             "data_type": "string",
             "required": true,
             "secret": false
