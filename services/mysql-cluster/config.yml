@@ -8,4 +8,4 @@ labels:
   - percona
   - cluster
 type: local
-default_service_version: 5.5
+default_service_version: 5.6
