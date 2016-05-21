@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 
@@ -61,26 +62,29 @@ func TestSDLsAreValid(t *testing.T) {
 				continue
 			}
 
-			servicePath := vendorPath + "/" + serviceName.Name()
+			servicePath := filepath.Join(vendorPath, serviceName.Name())
 			verSet := versionSet(t, servicePath, len(listDirs(t, servicePath)))
 
-			configFilePath := vendorPath + "/" + serviceName.Name() + "/config.yml"
+			configFilePath := filepath.Join(vendorPath, serviceName.Name(), "config.yml")
 			configfile, configfileerr := ioutil.ReadFile(configFilePath)
 			assert.Nil(t, configfileerr, "Error loading config file for service "+serviceName.Name())
 			assert.True(t, len(configfile) > 0, "Found empty config file for service "+serviceName.Name())
 
 			//check default version exists
-			var s serviceConfig
-			err := yaml.Unmarshal(configfile, &s)
+			var c serviceConfig
+			err := yaml.Unmarshal(configfile, &c)
 			assert.Nil(t, err, "unmarshalling the service config failed")
-			if s.DefaultServiceVersion != "" {
-				assert.Contains(t, verSet, s.DefaultServiceVersion, "version in service config does not match a dir in tree")
+			assert.NotEmpty(t, c.Name, "name must be defined")
+			assert.NotEmpty(t, c.Type, "type must be defined")
+			assert.NotEmpty(t, c.Description, "description must be defined")
+			assert.NotEmpty(t, c.Categories, "categories must be defined")
+			assert.NotEmpty(t, c.Labels, "labels must be defined")
+			if len(verSet) > 1 {
+				assert.NotEmpty(t, c.DefaultServiceVersion, "found more than 1 version and default_service_version is not set in config.yml")
 			}
-			assert.NotEmpty(t, s.Name, "name must be defined")
-			assert.NotEmpty(t, s.Type, "type must be defined")
-			assert.NotEmpty(t, s.Description, "description must be defined")
-			assert.NotEmpty(t, s.Categories, "categories must be defined")
-			assert.NotEmpty(t, s.Labels, "labels must be defined")
+			if c.DefaultServiceVersion != "" {
+				assert.Contains(t, verSet, c.DefaultServiceVersion, "version in service config does not match a dir in tree")
+			}
 
 			//subdirectories should be version of that service
 			for _, versionDir := range listDirs(t, servicePath) {
@@ -90,7 +94,7 @@ func TestSDLsAreValid(t *testing.T) {
 
 				t.Log("Validating Service " + serviceName.Name() + " version " + versionDir.Name())
 
-				sdlfile := vendorPath + "/" + serviceName.Name() + "/" + versionDir.Name() + "/sdl/sdl.json"
+				sdlfile := filepath.Join(vendorPath, serviceName.Name(), versionDir.Name(), "sdl/sdl.json")
 				contents, fileerr := ioutil.ReadFile(sdlfile)
 
 				//sdl should exist
@@ -100,17 +104,17 @@ func TestSDLsAreValid(t *testing.T) {
 				assert.True(t, len(contents) > 0, "Found empty sdl file for service "+serviceName.Name()+" version "+versionDir.Name())
 
 				//the sdl json object
-				var m sdl
-				err := json.Unmarshal(contents, &m)
+				var s sdl
+				err := json.Unmarshal(contents, &s)
 				assert.Nil(t, err, "unmarshalling the sdl failed")
 
 				//check contents match version and vendor directories
-				assert.Equal(t, vendor.Name(), m.Vendor, "vendor name does not match in sdl and directory")
-				assert.Contains(t, verSet, m.Version, "version in sdl does not match dir its in")
+				assert.Equal(t, vendor.Name(), s.Vendor, "vendor name does not match in sdl and directory")
+				assert.Contains(t, verSet, s.Version, "version in sdl does not match dir its in")
 
 				//convert sdl parameters to componentParameter type for check
 				var sdlParams []componentParameter
-				for _, param := range m.Parameters {
+				for _, param := range s.Parameters {
 					sdlParams = append(sdlParams, componentParameter{Name: param.Name})
 
 					//check that there is no default value set for parameters that contain 'PASSWORD' in the name
@@ -121,8 +125,13 @@ func TestSDLsAreValid(t *testing.T) {
 
 				var compParams []componentParameter
 				var compNames []string
-				for _, comp := range m.Components {
+				for _, comp := range s.Components {
 					compNames = append(compNames, comp.Name)
+
+					if comp.Name == "csm-side-car" {
+						p := componentParameter{Name: "CSM_API_KEY"}
+						assert.Contains(t, comp.Parameters, p, "CSM_API_KEY is not present in csm-side-car component")
+					}
 
 					//log a warning if component has "ALL" capabilities set
 					for _, cap := range comp.Capabilities {
@@ -142,7 +151,7 @@ func TestSDLsAreValid(t *testing.T) {
 				assert.Contains(t, compNames, "csm-side-car", "SDL needs a csm-side-car defined")
 
 				//check the parameter name and description are not equal and that all SDL parameters are used in components
-				for _, param := range m.Parameters {
+				for _, param := range s.Parameters {
 					assert.NotEqual(t, param.Name, param.Description, "Parameter name and description should not be the same")
 					assert.Contains(t, compParams, componentParameter{Name: param.Name}, "SDL parameter defined but not used in a component")
 				}
@@ -152,11 +161,9 @@ func TestSDLsAreValid(t *testing.T) {
 				sdlSchemaLoader := gojsonschema.NewReferenceLoader("file://./sdl_schema.json")
 				result, err := gojsonschema.Validate(sdlSchemaLoader, sdlLoader)
 				assert.Nil(t, err, "There was an unexpected error")
-
 				for _, err := range result.Errors() {
 					t.Log(err)
 				}
-
 				assert.Equal(t, len(result.Errors()), 0, "There was an error validating the SDL schema")
 			}
 		}
@@ -172,6 +179,9 @@ func listDirs(t *testing.T, path string) []os.FileInfo {
 func versionSet(t *testing.T, versionDir string, size int) map[string]struct{} {
 	vs := make(map[string]struct{}, size)
 	for _, d := range listDirs(t, versionDir) {
+		if !d.IsDir() {
+			continue
+		}
 		vs[d.Name()] = struct{}{}
 	}
 	return vs
