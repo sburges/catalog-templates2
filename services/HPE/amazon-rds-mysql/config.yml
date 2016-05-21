@@ -7,4 +7,4 @@ labels:
   - mysql
   - aws
 type: by-ref
-default_service_version: 0
+default_service_version: latest
