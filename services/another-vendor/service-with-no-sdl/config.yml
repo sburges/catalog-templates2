@@ -1,0 +1,7 @@
+name: test-service-with-no-sdl
+description: test service with no sdl
+categories:
+  - test
+labels:
+  - RestApi
+type: by-ref
