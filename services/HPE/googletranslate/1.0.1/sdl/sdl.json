@@ -37,15 +37,26 @@
                 },
                 {
                     "name": "CSM_PARAMETERS"
+                },
+                {
+                    "name": "API_KEY"
                 }
             ]
         }
     ],
     "parameters": [
         {
+            "name": "API_KEY",
+            "description": "Google API Key",
+            "example": "36XXX14-2f7c-4XXd-aX12-eXXX35bXXX0a",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
             "name": "CSM_PARAMETERS",
-            "description": "Parameters for the csm side-car to use application endpoint",
-            "example": "API_KEY",
+            "description": "Parameters for the csm side-car to be supplied to application on bind",
+            "default": "API_KEY",
             "data_type": "string",
             "required": true,
             "secret": false

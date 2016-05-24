@@ -135,6 +135,9 @@
                     "name": "CSM_API_KEY"
                 },
                 {
+                    "name": "SPARK_WORKER_PORT"
+                },
+                {
                     "name": "CSM_PARAMETERS"
                 }
             ]
@@ -152,9 +155,9 @@
         },
         {
             "name": "CSM_PARAMETERS",
-            "description": "Parameters for the csm side-car to use application endpoint",
-            "example": "API_KEY",
+            "description": "Parameters for the csm side-car to be supplied to application on bind",
             "data_type": "string",
+            "default": "SPARK_WORKER_PORT",
             "required": true,
             "secret": false
         },

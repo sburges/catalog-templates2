@@ -142,9 +142,6 @@
             "parameters": [
                 {
                     "name": "CSM_API_KEY"
-                },
-                {
-                    "name": "CSM_PARAMETERS"
                 }
             ]
         }
@@ -155,14 +152,6 @@
             "description": "If your cluster config provides DNS, use the value 'dns' here, otherwise use 'env'",
             "default": "dns",
             "example": "dns",
-            "data_type": "string",
-            "required": true,
-            "secret": false
-        },
-        {
-            "name": "CSM_PARAMETERS",
-            "description": "Parameters for the csm side-car to use application endpoint",
-            "example": "API_KEY",
             "data_type": "string",
             "required": true,
             "secret": false
