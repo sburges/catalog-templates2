@@ -63,22 +63,11 @@
             "parameters": [
                 {
                     "name": "CSM_API_KEY"
-                },
-                {
-                    "name": "CSM_PARAMETERS"
                 }
             ]
         }
     ],
     "parameters": [
-        {
-            "name": "CSM_PARAMETERS",
-            "description": "Parameters for the csm side-car to use application endpoint",
-            "example": "API_KEY",
-            "data_type": "string",
-            "required": true,
-            "secret": false
-        },
         {
             "name": "CSM_API_KEY",
             "description": "CSM side-car api key",
