@@ -5,11 +5,11 @@
     "components": [
         {
             "name": "csm-side-car",
-            "version": "latest",
-            "vendor": "amazon",
-            "external_name": "amazon-rds-mysql",
-            "image": "helioncf/catalog-service-manager:rds-mysql",
-            "min_RAM_mb": 512,
+            "version": "1.0",
+            "vendor": "HPE",
+            "external_name": "amazon-rds-csm-side-car",
+            "image": "docker-registry.helion.space:443/service-catalog/csm-rds-mysql:latest",
+            "min_RAM_mb": 50,
             "min_disk_gb": 1,
             "min_VCPU": 1,
             "platform": "linux-x86_64",
@@ -18,7 +18,8 @@
             "labels": [
                 "database",
                 "mysql",
-                "aws"
+                "aws",
+                "csm"
             ],
             "min_instances": 1,
             "max_instances": 1,
