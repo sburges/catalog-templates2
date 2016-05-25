@@ -11,8 +11,6 @@ all: tools test
 
 tools:
 	@echo "$(OK_COLOR)==> Getting required tools$(NO_COLOR)"
-	go get github.com/xeipuuv/gojsonschema
-	go get github.com/stretchr/testify
 	go get github.com/tools/godep
 
 test: tools test-format

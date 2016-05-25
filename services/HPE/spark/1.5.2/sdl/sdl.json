@@ -108,7 +108,7 @@
             "vendor": "HPE",
             "external_name": "spark-csm-side-car",
             "image": "docker-registry.helion.space:443/service-catalog/catalog-service-manager:latest",
-            "min_RAM_mb": 512,
+            "min_RAM_mb": 50,
             "min_disk_gb": 1,
             "min_VCPU": 1,
             "platform": "linux-x86_64",
@@ -116,7 +116,8 @@
             "capabilities": [],
             "affinity": [],
             "labels": [
-                "spark"
+                "spark",
+                "csm"
             ],
             "min_instances": 1,
             "max_instances": 1,
