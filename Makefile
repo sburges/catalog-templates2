@@ -11,12 +11,11 @@ all: tools test
 
 tools:
 	@echo "$(OK_COLOR)==> Getting required tools$(NO_COLOR)"
-	go get github.com/xeipuuv/gojsonschema
-	go get github.com/stretchr/testify
+	go get github.com/tools/godep
 
 test: tools test-format
 	@echo "$(OK_COLOR)==> Testing code$(NO_COLOR)"
-	go test ./... -v
+	godep go test ./... -v
 
 test-format:
 	@echo "$(OK_COLOR)==> Checking code with gofmt$(NO_COLOR)"

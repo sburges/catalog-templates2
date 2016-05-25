@@ -1,7 +1,0 @@
-name: Google Translate
-description: Google's free online language translation service instantly translates text and web pages. 
-categories:
-  - Translation
-labels:
-type: by-ref
-default_service_version: 1.0.1
