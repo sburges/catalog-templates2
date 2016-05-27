@@ -1,0 +1,14 @@
+{
+    "name": "dev-rabbitmq",
+    "version": "1.0.0",
+    "vendor": "HPE",
+    "labels": ["rabbitmq-cluster-1"],
+    "instance_id": "my-rabbitmq",
+    "description": "A rabbitmq example cluster",
+    "parameters": [
+	{
+	    "name": "CSM_API_KEY",
+	    "value": "Some-Password"
+	}
+    ]
+}

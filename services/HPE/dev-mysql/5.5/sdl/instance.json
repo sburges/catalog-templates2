@@ -1,0 +1,22 @@
+{
+    "name": "dev-mysql",
+    "version": "1.0.0",
+    "vendor": "HPE",
+    "labels": ["mysql-cluster-1"],
+    "instance_id": "my-mysql",
+    "description": "A mysql example cluster",
+    "parameters": [
+        {
+            "name": "MYSQL_ROOT_PASSWORD",
+            "value": "Some-Password"
+        },
+	{
+	    "name": "MYSQL_PASS",
+	    "value": "Some-Password"
+	},
+	{
+	    "name": "CSM_API_KEY",
+	    "value": "Some-Password"
+	}
+    ]
+}

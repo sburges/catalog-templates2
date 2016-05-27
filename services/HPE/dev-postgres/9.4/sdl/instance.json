@@ -1,0 +1,18 @@
+{
+    "name": "dev-postgres",
+    "version": "1.0.0",
+    "vendor": "HPE",
+    "labels": ["postgres-cluster-1"],
+    "instance_id": "my-postgres",
+    "description": "A postgres example cluster",
+    "parameters": [
+	{
+	    "name": "POSTGRES_PASSWORD",
+	    "value": "Some-Password"
+	},
+	{
+	    "name": "CSM_API_KEY",
+	    "value": "Some-Password"
+	}
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "name": "dev-redis",
+    "version": "1.0.0",
+    "vendor": "HPE",
+    "labels": ["redis-cluster-1"],
+    "instance_id": "my-redis",
+    "description": "A redis example cluster",
+    "parameters": [
+	{
+	    "name": "CSM_API_KEY",
+	    "value": "Some-Password"
+	}
+    ]
+}
