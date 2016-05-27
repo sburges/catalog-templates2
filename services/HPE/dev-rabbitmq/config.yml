@@ -1,0 +1,9 @@
+name: RabbitMQ
+description: RabbitMQ message queueing
+categories:
+  - MessageQueueing
+labels:
+  - messagequeueing
+  - rabbitmq
+type: local
+default_service_version: 3.6.0-management
