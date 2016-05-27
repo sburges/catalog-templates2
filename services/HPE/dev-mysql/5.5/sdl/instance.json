@@ -1,6 +1,6 @@
 {
     "name": "dev-mysql",
-    "version": "1.0.0",
+    "version": "5.5",
     "vendor": "HPE",
     "labels": ["mysql-cluster-1"],
     "instance_id": "my-mysql",

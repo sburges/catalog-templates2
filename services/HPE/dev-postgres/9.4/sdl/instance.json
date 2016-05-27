@@ -1,6 +1,6 @@
 {
     "name": "dev-postgres",
-    "version": "1.0.0",
+    "version": "9.4",
     "vendor": "HPE",
     "labels": ["postgres-cluster-1"],
     "instance_id": "my-postgres",
