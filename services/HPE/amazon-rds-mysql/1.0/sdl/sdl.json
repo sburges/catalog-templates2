@@ -1,6 +1,6 @@
 {
     "name": "amazon-rds-mysql",
-    "version": "latest",
+    "version": "1.0",
     "vendor": "HPE",
     "components": [
         {
