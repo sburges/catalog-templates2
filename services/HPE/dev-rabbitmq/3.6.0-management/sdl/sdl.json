@@ -26,7 +26,7 @@
           "protocol": "TCP",
           "source_port": 2375,
           "target_port": 2375,
-          "public": true
+          "public": false
         },
         {"name": "rabbitport1","protocol": "TCP","source_port": 32000,"target_port": 32000,"public": true},
         {"name": "rabbitport2","protocol": "TCP","source_port": 32001,"target_port": 32001,"public": true},
@@ -65,7 +65,7 @@
       "workload_type": "container",
       "version": "0.0.0",
       "vendor": "HPE",
-      "image": "docker-registry.helion.space/hcf-ro/csm-dev-rabbitmq:0.0.3",
+      "image": "docker-registry.helion.space/hcf-ro/csm-dev-rabbitmq:0.0.5",
       "min_RAM_mb": 50,
       "min_disk_gb": 1,
       "min_VCPU": 1,
@@ -87,16 +87,7 @@
       "volume_mounts": [],
       "parameters": [
         {
-          "name": "DOCKER_ENDPOINT"
-        },
-        {
           "name": "DOCKER_IMAGE"
-        },
-        {
-          "name": "DOCKER_HOST"
-        },
-        {
-          "name": "DOCKER_PORT"
         },
         {
           "name": "CSM_API_KEY"
@@ -121,14 +112,6 @@
   ],
   "parameters": [
     {
-      "name": "DOCKER_ENDPOINT",
-      "description": "Docker endpoint for rabbitmq container",
-      "example": "endpoint.example",
-      "required": true,
-      "secret": false,
-      "default": ""
-    },
-    {
       "name": "DOCKER_IMAGE",
       "description": "Docker image name",
       "example": "rabbitmq",
@@ -143,22 +126,6 @@
       "required": true,
       "secret": false,
       "default": "3.6.0-management"
-    },
-    {
-      "name": "DOCKER_HOST",
-      "description": "Docker host",
-      "example": "example.com",
-      "required": true,
-      "secret": false,
-      "default": ""
-    },
-    {
-      "name": "DOCKER_PORT",
-      "description": "Docker port",
-      "example": "5672",
-      "required": true,
-      "secret": false,
-      "default": "2375"
     },
     {
       "name": "CSM_EXT_TIMEOUT",

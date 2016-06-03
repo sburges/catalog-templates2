@@ -26,7 +26,7 @@
           "protocol": "TCP",
           "source_port": 3306,
           "target_port": 3306,
-          "public": true
+          "public": false
         }
       ],
       "volume_mounts": [],
@@ -42,7 +42,7 @@
       "workload_type": "container",
       "version": "0.0.0",
       "vendor": "HPE",
-      "image": "docker-registry.helion.space/hcf-ro/csm-dev-mysql:0.0.3",
+      "image": "docker-registry.helion.space/hcf-ro/csm-dev-mysql:0.0.4",
       "min_RAM_mb": 50,
       "min_disk_gb": 1,
       "min_VCPU": 1,
@@ -64,16 +64,10 @@
       "volume_mounts": [],
       "parameters": [
         {
-          "name": "MYSQL_HOST"
-        },
-        {
           "name": "MYSQL_USER"
         },
         {
           "name": "MYSQL_PASS"
-        },
-        {
-          "name": "MYSQL_PORT"
         },
         {
           "name": "CSM_API_KEY"
@@ -103,22 +97,6 @@
       "example": "changeme",
       "required": true,
       "secret": false
-    },
-    {
-      "name": "MYSQL_HOST",
-      "description": "MySQL host the sidecar will connect to",
-      "example": "mysql.my-mysql-dev-cluster.svc.cluster.ucp",
-      "required": true,
-      "secret": false,
-      "default": ""
-    },
-    {
-      "name": "MYSQL_PORT",
-      "description": "MySQL port the sidecar will connect to",
-      "example": "3306",
-      "required": true,
-      "secret": false,
-      "default": "3306"
     },
     {
       "name": "CSM_API_KEY",
