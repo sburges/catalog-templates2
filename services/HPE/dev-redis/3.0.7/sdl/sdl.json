@@ -145,16 +145,16 @@
     },
     {
       "name": "CSM_EXT_TIMEOUT",
-      "description": "CSM timeout in seconds",
-      "example": "60",
+      "description": "CSM timeout in seconds. If you don't know what to put here, leave it default.",
+      "example": "120",
       "required": true,
       "secret": false,
       "default": "120"
     },
     {
       "name": "CSM_EXT_TIMEOUT_ERROR",
-      "description": "CSM timeout for errors in seconds",
-      "example": "10",
+      "description": "CSM timeout for errors in seconds. If you don't know what to put here, leave it default.",
+      "example": "30",
       "required": true,
       "secret": false,
       "default": "30"

@@ -26,7 +26,7 @@
           "protocol": "TCP",
           "source_port": 27017,
           "target_port": 27017,
-          "public": true
+          "public": false
         }
       ],
       "volume_mounts": [],
@@ -42,7 +42,7 @@
       "workload_type": "container",
       "version": "0.0.0",
       "vendor": "HPE",
-      "image": "docker-registry.helion.space/hcf-ro/csm-dev-mongo:0.0.2",
+      "image": "docker-registry.helion.space/hcf-ro/csm-dev-mongo:0.0.8",
       "min_RAM_mb": 50,
       "min_disk_gb": 1,
       "min_VCPU": 1,
@@ -64,16 +64,13 @@
       "volume_mounts": [],
       "parameters": [
         {
-          "name": "MONGO_HOST"
+          "name": "MONGO_PASS"
         },
         {
           "name": "MONGO_USER"
         },
         {
-          "name": "MONGO_PASS"
-        },
-        {
-          "name": "MONGO_PORT"
+          "name": "MONGODB_PASS"
         },
         {
           "name": "CSM_API_KEY"
@@ -96,22 +93,6 @@
       "example": "changeme",
       "required": true,
       "secret": false
-    },
-    {
-      "name": "MONGO_HOST",
-      "description": "Mongo host the sidecar will connect to",
-      "example": "mongo.my-mongo-dev-cluster.svc.cluster.ucp",
-      "required": true,
-      "secret": false,
-      "default": ""
-    },
-    {
-      "name": "MONGO_PORT",
-      "description": "Mongo port the sidecar will connect to",
-      "example": "27017",
-      "required": true,
-      "secret": false,
-      "default": "27017"
     },
     {
       "name": "CSM_API_KEY",
