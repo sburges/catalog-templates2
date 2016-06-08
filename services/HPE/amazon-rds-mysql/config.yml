@@ -8,5 +8,5 @@ labels:
   - aws
 type: by-ref
 default_service_version: 1.0
-is_supported: true
+supported: true
 deployment_grade: production

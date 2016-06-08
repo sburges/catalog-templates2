@@ -46,6 +46,8 @@ type serviceConfig struct {
 	Labels                []string `yaml:"labels"`
 	Type                  string   `yaml:"type"`
 	DefaultServiceVersion string   `yaml:"default_service_version"`
+	DeploymentGrade       string   `yaml:"deployment_grade"`
+	Supported             string   `yaml:"supported"`
 }
 
 func TestSDLsAreValid(t *testing.T) {
@@ -84,6 +86,16 @@ func TestSDLsAreValid(t *testing.T) {
 			}
 			if c.DefaultServiceVersion != "" {
 				assert.Contains(t, verSet, c.DefaultServiceVersion, "version in service config does not match a dir in tree")
+			}
+			// DeploymentGrade should either be production or development or nil
+			if c.DeploymentGrade != "" {
+				deployGrade := strings.ToLower(c.DeploymentGrade)
+				assert.True(t, deployGrade == "production" || deployGrade == "development", "deployment grade can be empty or development or production")
+			}
+			// Supported should either be production or development or nil
+			if c.Supported != "" {
+				support := strings.ToLower(c.Supported)
+				assert.True(t, support == "true" || support == "false", "support can be empty or true or false")
 			}
 
 			//subdirectories should be version of that service
