@@ -1,0 +1,9 @@
+name: Mongo
+description: Mongo Database Server
+categories:
+  - Database
+labels:
+  - database
+  - mongo
+type: local
+default_service_version: 3.0

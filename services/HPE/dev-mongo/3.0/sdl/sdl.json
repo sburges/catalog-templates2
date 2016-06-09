@@ -1,0 +1,112 @@
+{
+  "name": "dev-mongo",
+  "version": "3.0",
+  "vendor": "HPE",
+  "volumes": [],
+  "components": [
+    {
+      "name": "mongo",
+      "external_name": "mongo",
+      "workload_type": "container",
+      "version": "0.0.0",
+      "vendor": "HPE",
+      "image": "tutum/mongodb:3.0",
+      "min_RAM_mb": 512,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "capabilities": [],
+      "affinity": [],
+      "labels": ["mongo"],
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "mongo",
+          "protocol": "TCP",
+          "source_port": 27017,
+          "target_port": 27017,
+          "public": false
+        }
+      ],
+      "volume_mounts": [],
+      "parameters": [
+        {
+          "name": "MONGODB_PASS"
+        }
+      ]
+    },
+    {
+      "name": "csm-side-car",
+      "external_name": "mongo-csm-side-car",
+      "workload_type": "container",
+      "version": "0.0.0",
+      "vendor": "HPE",
+      "image": "docker-registry.helion.space/hcf-ro/csm-dev-mongo:0.0.8",
+      "min_RAM_mb": 50,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "capabilities": [],
+      "affinity": [],
+      "labels": ["mongo-csm"],
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "mongo-csm",
+          "protocol": "TCP",
+          "source_port": 8081,
+          "target_port": 8081,
+          "public": true
+        }
+      ],
+      "volume_mounts": [],
+      "parameters": [
+        {
+          "name": "MONGO_PASS"
+        },
+        {
+          "name": "MONGO_USER"
+        },
+        {
+          "name": "MONGODB_PASS"
+        },
+        {
+          "name": "CSM_API_KEY"
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "name": "MONGO_USER",
+      "description": "Mongo user used by the sidecar",
+      "example": "admin",
+      "required": true,
+      "secret": false,
+      "default": "admin"
+    },
+    {
+      "name": "MONGO_PASS",
+      "description": "Mongo password used by the sidecar",
+      "example": "changeme",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "CSM_API_KEY",
+      "description": "API Key used to authenticate consumers of the sidecar API",
+      "example": "my-secret-key",
+      "required": true,
+      "secret": false
+    },
+    {
+      "name": "MONGODB_PASS",
+      "description": "Mongo password used by the server",
+      "example": "changeme",
+      "required": true,
+      "secret": false
+    }
+  ]
+}

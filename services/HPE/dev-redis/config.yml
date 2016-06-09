@@ -1,0 +1,9 @@
+name: Redis
+description: Redis Database Server
+categories:
+  - Database
+labels:
+  - database
+  - redis
+type: local
+default_service_version: 3.0.7

@@ -1,0 +1,9 @@
+name: Postgres
+description: Postgres Database Server
+categories:
+  - Database
+labels:
+  - database
+  - postgres
+type: local
+default_service_version: 9.4
