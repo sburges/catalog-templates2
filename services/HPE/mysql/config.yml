@@ -1,9 +1,0 @@
-name: MySQL
-description: MySQL Database Server
-categories:
-  - Database
-labels:
-  - database
-  - mysql
-type: local
-default_service_version: 5.6

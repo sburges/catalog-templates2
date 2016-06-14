@@ -1,5 +1,5 @@
 {
-  "name": "dev-redis",
+  "name": "redis",
   "version": "3.0.7",
   "vendor": "HPE",
   "volumes": [],

@@ -1,9 +1,10 @@
 name: Mongo
-description: Mongo Database Server
+description: MongoDB is a cross-platform document-oriented database. Classified as a NoSQL database, MongoDB uses JSON-like documents with dynamic schemas
 categories:
   - Database
 labels:
   - database
-  - mongo
+  - open source
+  - document store
 type: local
 default_service_version: 3.0

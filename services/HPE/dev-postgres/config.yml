@@ -1,9 +1,9 @@
 name: Postgres
-description: Postgres Database Server
+description: PostgreSQL is an object-relational database management system (ORDBMS) with an emphasis on extensibility and standards-compliance.
 categories:
   - Database
 labels:
   - database
-  - postgres
+  - open source
 type: local
 default_service_version: 9.4

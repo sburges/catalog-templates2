@@ -1,9 +1,9 @@
 name: RabbitMQ
-description: RabbitMQ message queueing
+description: RabbitMQ is open source message broker software (sometimes called message-oriented middleware) that implements the Advanced Message Queuing Protocol (AMQP).
 categories:
-  - MessageQueueing
+  - MessageQueue
 labels:
-  - messagequeueing
-  - rabbitmq
+  - messaging broker
+  - queue
 type: local
 default_service_version: 3.6.0-management
