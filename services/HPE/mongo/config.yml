@@ -1,9 +1,0 @@
-name: Mongo
-description: MongoDB Database.
-categories:
-  - Database
-labels:
-  - database
-  - mongo
-type: local
-default_service_version: 3.2.4
