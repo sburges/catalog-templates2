@@ -1,0 +1,9 @@
+name: Pass-through
+description: This is a general-purpose configuration pass-through service for cloud foundry apps. This service accepts generic JSON data makes it available to applications using the vcap_services environment variable.
+categories:
+  - Configuration
+labels:
+  - Configuration
+  - Pass-through
+type: local
+default_service_version: 1.0
