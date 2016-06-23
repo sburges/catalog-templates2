@@ -1,0 +1,14 @@
+{
+  "name": "Spark Cluster",
+  "description": "Apache Spark Cluster",
+  "categories": [
+    "Big Data"
+  ],
+  "labels": [
+    "bigdata",
+    "spark",
+    "apache"
+  ],
+  "type": "local",
+  "default_service_version": "1.5.2"
+}

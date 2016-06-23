@@ -1,9 +1,0 @@
-name: GuestBook
-description: A sample guestbook
-categories:
-  - Sample Applications
-labels:
-  - app
-  - samples
-type: local
-default_service_version: 1.0.0
