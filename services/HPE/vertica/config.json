@@ -1,0 +1,14 @@
+{
+  "name": "Vertica Server Community",
+  "description": "A community edition of the vertica server. This service creates an initial database \"docker\" with username \"dbadmin\".",
+  "categories": [
+    "Big Data",
+    "Database"
+  ],
+  "labels": [
+    "big data",
+    "database"
+  ],
+  "type": "local",
+  "default_service_version": "7.1.1"
+}

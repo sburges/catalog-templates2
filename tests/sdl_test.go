@@ -10,7 +10,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/xeipuuv/gojsonschema"
-	"gopkg.in/yaml.v2"
 )
 
 type sdl struct {
@@ -40,14 +39,14 @@ type parameter struct {
 }
 
 type serviceConfig struct {
-	Name                  string   `yaml:"name"`
-	Description           string   `yaml:"description"`
-	Categories            []string `yaml:"categories"`
-	Labels                []string `yaml:"labels"`
-	Type                  string   `yaml:"type"`
-	DefaultServiceVersion string   `yaml:"default_service_version"`
-	DeploymentGrade       string   `yaml:"deployment_grade"`
-	Supported             string   `yaml:"supported"`
+	Name                  string   `json:"name"`
+	Description           string   `json:"description"`
+	Categories            []string `json:"categories"`
+	Labels                []string `json:"labels"`
+	Type                  string   `json:"type"`
+	DefaultServiceVersion string   `json:"default_service_version"`
+	DeploymentGrade       string   `json:"deployment_grade"`
+	Supported             bool     `json:"supported"`
 }
 
 func TestSDLsAreValid(t *testing.T) {
@@ -67,22 +66,22 @@ func TestSDLsAreValid(t *testing.T) {
 			servicePath := filepath.Join(vendorPath, serviceName.Name())
 			verSet := versionSet(t, servicePath, len(listDirs(t, servicePath)))
 
-			configFilePath := filepath.Join(vendorPath, serviceName.Name(), "config.yml")
+			configFilePath := filepath.Join(vendorPath, serviceName.Name(), "config.json")
 			configfile, configfileerr := ioutil.ReadFile(configFilePath)
 			assert.Nil(t, configfileerr, "Error loading config file for service "+serviceName.Name())
 			assert.True(t, len(configfile) > 0, "Found empty config file for service "+serviceName.Name())
 
 			//check default version exists
 			var c serviceConfig
-			err := yaml.Unmarshal(configfile, &c)
-			assert.Nil(t, err, "unmarshalling the service config failed")
+			err := json.Unmarshal(configfile, &c)
+			assert.Nil(t, err, "unmarshalling the service config failed for "+serviceName.Name())
 			assert.NotEmpty(t, c.Name, "name must be defined")
 			assert.NotEmpty(t, c.Type, "type must be defined")
 			assert.NotEmpty(t, c.Description, "description must be defined")
 			assert.NotEmpty(t, c.Categories, "categories must be defined")
 			assert.NotEmpty(t, c.Labels, "labels must be defined")
 			if len(verSet) > 1 {
-				assert.NotEmpty(t, c.DefaultServiceVersion, "found more than 1 version and default_service_version is not set in config.yml")
+				assert.NotEmpty(t, c.DefaultServiceVersion, "found more than 1 version and default_service_version is not set in config.json")
 			}
 			if c.DefaultServiceVersion != "" {
 				assert.Contains(t, verSet, c.DefaultServiceVersion, "version in service config does not match a dir in tree")
@@ -91,11 +90,6 @@ func TestSDLsAreValid(t *testing.T) {
 			if c.DeploymentGrade != "" {
 				deployGrade := strings.ToLower(c.DeploymentGrade)
 				assert.True(t, deployGrade == "production" || deployGrade == "development", "deployment grade can be empty or development or production")
-			}
-			// Supported should either be production or development or nil
-			if c.Supported != "" {
-				support := strings.ToLower(c.Supported)
-				assert.True(t, support == "true" || support == "false", "support can be empty or true or false")
 			}
 
 			//subdirectories should be version of that service
