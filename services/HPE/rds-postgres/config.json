@@ -1,0 +1,14 @@
+{
+  "name": "Postgres RDS",
+  "description": "PostgreSQL RDS is an object-relational database management system (ORDBMS) on Amazon RDS.",
+  "categories": [
+    "Database"
+  ],
+  "labels": [
+    "database",
+    "aws",
+    "postgres"
+  ],
+  "type": "by-ref",
+  "default_service_version": "9.4"
+}
