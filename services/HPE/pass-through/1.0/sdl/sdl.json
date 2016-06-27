@@ -6,10 +6,10 @@
     "components": [
         {
             "name": "csm-side-car",
-            "version": "1.0.0",
+            "version": "latest",
             "vendor": "HPE",
             "external_name": "pass-through-csm-side-car",
-            "image": "docker-registry.helion.space:443/service-catalog/catalog-service-manager:1.1.22",
+            "image": "docker-registry.helion.space:443/catalog-service-manager/csm:latest",
             "min_RAM_mb": 50,
             "min_disk_gb": 1,
             "min_VCPU": 1,

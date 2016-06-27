@@ -8,7 +8,7 @@ pass-through service, accepts JSON and makes it available to CF apps in VCAP Ser
 
 ### Usage:
 
-Select HavenOnDemand from catalog.
+Select PassThrough from catalog.
 
 Click deploy.
 Supply the JSON that needs to be available in CF Apps

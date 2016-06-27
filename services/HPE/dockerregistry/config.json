@@ -1,0 +1,13 @@
+{
+  "name": "Docker Registry",
+  "description": "Containerized docker registry",
+  "categories": [
+    "Docker"
+  ],
+  "labels": [
+    "Docker",
+    "Registry"
+  ],
+  "type": "local",
+  "default_service_version": "2.3.1"
+}
