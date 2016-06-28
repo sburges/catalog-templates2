@@ -1,5 +1,5 @@
 {
-    "name": "k8-guestbook",
+    "name": "guestbook",
     "version": "1.0.0",
     "vendor": "HPE",
     "volumes": [

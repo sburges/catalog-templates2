@@ -1,5 +1,4 @@
 {
-  "name": "AmazonRDSMySQL",
   "description": "Amazon RDS MySQL Database Server",
   "categories": [
     "Database"
