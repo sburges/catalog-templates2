@@ -1,5 +1,4 @@
 {
-  "name": "Docker Registry",
   "description": "Containerized docker registry",
   "categories": [
     "Docker"

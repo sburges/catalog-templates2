@@ -75,7 +75,6 @@ func TestSDLsAreValid(t *testing.T) {
 			var c serviceConfig
 			err := json.Unmarshal(configfile, &c)
 			assert.Nil(t, err, "unmarshalling the service config failed for "+serviceName.Name())
-			assert.NotEmpty(t, c.Name, "name must be defined")
 			assert.NotEmpty(t, c.Type, "type must be defined")
 			assert.NotEmpty(t, c.Description, "description must be defined")
 			assert.NotEmpty(t, c.Categories, "categories must be defined")

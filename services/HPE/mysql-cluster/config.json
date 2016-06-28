@@ -1,5 +1,4 @@
 {
-  "name": "Percona Cluster",
   "description": "Percona Galera Cluster",
   "categories": [
     "Database"

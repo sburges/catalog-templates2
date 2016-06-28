@@ -1,5 +1,4 @@
 {
-  "name": "MySQL",
   "description": "MySQL is a popular open source relational database management system.", 
   "categories":[
     "Database"

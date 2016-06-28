@@ -1,5 +1,4 @@
 {
-  "name": "Mongo",
   "description": "MongoDB is a cross-platform document-oriented database. Classified as a NoSQL database, MongoDB uses JSON-like documents with dynamic schemas",
   "categories":[
     "Database"
