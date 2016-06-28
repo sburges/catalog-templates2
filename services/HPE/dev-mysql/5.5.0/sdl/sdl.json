@@ -2,7 +2,12 @@
   "name": "dev-mysql",
   "version": "5.5.0",
   "vendor": "HPE",
-  "volumes": [],
+  "volumes": [{
+ 		"name": "dev-mysql-volume",
+ 		"size_gb": 1,
+ 		"filesystem": "ext4",
+ 		"shared": false
+ 	}],
   "components": [
     {
       "name": "mysql",
@@ -29,7 +34,10 @@
           "public": false
         }
       ],
-      "volume_mounts": [],
+      "volume_mounts": [{
+ 			"volume_name": "dev-mysql-volume",
+ 			"mountpoint": "/var/lib/mysql"
+ 		}],
       "parameters": [
         {
           "name": "MYSQL_ROOT_PASSWORD"

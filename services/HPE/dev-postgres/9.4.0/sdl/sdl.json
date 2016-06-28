@@ -2,7 +2,12 @@
   "name": "dev-postgres",
   "version": "9.4.0",
   "vendor": "HPE",
-  "volumes": [],
+  "volumes": [{
+ 		"name": "dev-postgres-volume",
+ 		"size_gb": 1,
+ 		"filesystem": "ext4",
+ 		"shared": false
+ 	}],
   "components": [
     {
       "name": "postgres",
@@ -29,12 +34,14 @@
           "public": false
         }
       ],
-      "volume_mounts": [],
+      "volume_mounts": [{
+ 			"volume_name": "dev-postgres-volume",
+ 			"mountpoint": "/var/lib/postgresql/data"
+ 		}],
       "parameters": [
         {
           "name": "POSTGRES_PASSWORD"
-        }
-      ]
+        }]
     },
     {
       "name": "csm-side-car",

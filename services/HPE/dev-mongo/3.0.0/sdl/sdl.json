@@ -2,7 +2,12 @@
   "name": "dev-mongo",
   "version": "3.0.0",
   "vendor": "HPE",
-  "volumes": [],
+  "volumes": [{
+ 		"name": "dev-mongo-volume",
+ 		"size_gb": 1,
+ 		"filesystem": "ext4",
+ 		"shared": false
+ 	}],
   "components": [
     {
       "name": "mongo",
@@ -29,7 +34,10 @@
           "public": false
         }
       ],
-      "volume_mounts": [],
+      "volume_mounts": [{
+ 			"volume_name": "dev-mongo-volume",
+ 			"mountpoint": "/data/db"
+ 		}],
       "parameters": [
         {
           "name": "MONGODB_PASS"
