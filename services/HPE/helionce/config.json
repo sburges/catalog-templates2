@@ -1,0 +1,12 @@
+{
+  "name": "Helion CodeEngine",
+  "description": "HCE is a continuous integration and delivery tool designed for cloud native applications. With an intuitive onboarding yet powerful feature set, it’s the ideal tool for teams who want to get started with CICD. Get from code to running app in a matter of minutes.",
+  "categories": [
+    "CI"
+  ],
+  "labels": [
+    "CI/CD"
+  ],
+  "type": "local",
+  "default_service_version": "1.0.0"
+}

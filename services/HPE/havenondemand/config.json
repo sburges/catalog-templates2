@@ -16,5 +16,5 @@
   "type": "by-ref",
   "default_service_version": "1.0",
   "supported": true,
-  "deployment_grade": "production"
+  "deployment_grade": "Production"
 }

@@ -1,0 +1,10 @@
+{
+  "name": "Helion Cloud Foundry",
+  "description": "HPE Helion Cloud Foundry is an application platform or Platform as a Service (PaaS) that enables developers to rapidly develop, deploy, and scale cloud applications across a mix of public and private clouds. We provide support for a wide and growing list of programming languages and technologies.",
+  "categories": [
+    "PaaS",
+    "Applications"
+  ],
+  "type": "local",
+  "default_service_version": "0.13.1_425.gb30fb14.HCF-670-ucp-to-hcp"
+}
