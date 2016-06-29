@@ -5,10 +5,10 @@
     "components": [
         {
             "name": "csm-side-car",
-            "version": "1.0",
+            "version": "latest",
             "vendor": "HPE",
             "external_name": "amazon-rds-csm-side-car",
-            "image": "docker-registry.helion.space:443/service-catalog/csm-rds-mysql:latest",
+            "image": "docker-registry.helion.space:443/catalog-service-manager/csm-rds-mysql:latest",
             "min_RAM_mb": 50,
             "min_disk_gb": 1,
             "min_VCPU": 1,
