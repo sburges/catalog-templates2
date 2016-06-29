@@ -81,7 +81,12 @@
       "description": "MySQL root password",
       "example": "changeme",
       "required": true,
-      "secret": false
+      "secret": false,
+      "generator":
+      {
+          "id": "mysql_root_password",
+          "type": "Password"
+      }
     },
     {
       "name": "MYSQL_USER",
@@ -96,7 +101,12 @@
       "description": "MySQL password used by the sidecar",
       "example": "changeme",
       "required": true,
-      "secret": false
+      "secret": false,
+      "generator":
+      {
+          "id": "mysql_password",
+          "type": "Password"
+      }
     },
     {
       "name": "CSM_API_KEY",

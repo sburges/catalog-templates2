@@ -92,7 +92,12 @@
       "description": "Mongo password used by the sidecar",
       "example": "changeme",
       "required": true,
-      "secret": false
+      "secret": false,
+      "generator":
+      {
+          "id": "mongo_pass",
+          "type": "Password"
+      }
     },
     {
       "name": "CSM_API_KEY",
@@ -106,7 +111,12 @@
       "description": "Mongo password used by the server",
       "example": "changeme",
       "required": true,
-      "secret": false
+      "secret": false,
+      "generator":
+      {
+          "id": "mongodp_pass",
+          "type": "Password"
+      }
     }
   ]
 }
