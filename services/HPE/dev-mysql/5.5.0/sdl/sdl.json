@@ -2,7 +2,12 @@
   "name": "dev-mysql",
   "version": "5.5.0",
   "vendor": "HPE",
-  "volumes": [],
+  "volumes": [{
+ 		"name": "dev-mysql-volume",
+ 		"size_gb": 1,
+ 		"filesystem": "ext4",
+ 		"shared": false
+ 	}],
   "components": [
     {
       "name": "mysql",
@@ -10,7 +15,7 @@
       "workload_type": "container",
       "version": "0.0.0",
       "vendor": "HPE",
-      "image": "mysql:5.5",
+      "image": "docker-registry.helion.space:443/catalog-service-manager/csm-dev-mysql-db:latest",
       "min_RAM_mb": 512,
       "min_disk_gb": 1,
       "min_VCPU": 1,
@@ -29,7 +34,10 @@
           "public": false
         }
       ],
-      "volume_mounts": [],
+      "volume_mounts": [{
+ 			"volume_name": "dev-mysql-volume",
+ 			"mountpoint": "/var/lib/mysql"
+ 		}],
       "parameters": [
         {
           "name": "MYSQL_ROOT_PASSWORD"

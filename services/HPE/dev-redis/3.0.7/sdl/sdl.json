@@ -8,9 +8,9 @@
       "name": "redis",
       "external_name": "redis",
       "workload_type": "container",
-      "version": "0.0.0",
+      "version": "latest",
       "vendor": "HPE",
-      "image": "docker:1.10.3-dind",
+      "image": "docker-registry.helion.space:443/catalog-service-manager/csm-dev-redis-db:latest",
       "min_RAM_mb": 512,
       "min_disk_gb": 1,
       "min_VCPU": 1,
@@ -146,10 +146,10 @@
     {
       "name": "CSM_EXT_TIMEOUT",
       "description": "CSM timeout in seconds. If you don't know what to put here, leave it default.",
-      "example": "120",
+      "example": "300",
       "required": true,
       "secret": false,
-      "default": "120"
+      "default": "300"
     },
     {
       "name": "CSM_EXT_TIMEOUT_ERROR",

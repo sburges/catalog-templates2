@@ -2,15 +2,20 @@
   "name": "dev-postgres",
   "version": "9.4.0",
   "vendor": "HPE",
-  "volumes": [],
+  "volumes": [{
+ 		"name": "dev-postgres-volume",
+ 		"size_gb": 1,
+ 		"filesystem": "ext4",
+ 		"shared": false
+ 	}],
   "components": [
     {
       "name": "postgres",
       "external_name": "postgres",
       "workload_type": "container",
-      "version": "0.0.0",
+      "version": "latest",
       "vendor": "HPE",
-      "image": "postgres:9.4",
+      "image": "docker-registry.helion.space:443/catalog-service-manager/csm-dev-postgres-db:latest",
       "min_RAM_mb": 512,
       "min_disk_gb": 1,
       "min_VCPU": 1,
@@ -29,12 +34,14 @@
           "public": false
         }
       ],
-      "volume_mounts": [],
+      "volume_mounts": [{
+ 			"volume_name": "dev-postgres-volume",
+ 			"mountpoint": "/var/lib/postgresql/data"
+ 		}],
       "parameters": [
         {
           "name": "POSTGRES_PASSWORD"
-        }
-      ]
+        }]
     },
     {
       "name": "csm-side-car",
