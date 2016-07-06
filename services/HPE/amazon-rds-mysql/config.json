@@ -9,7 +9,7 @@
     "aws"
   ],
   "type": "by-ref",
-  "default_service_version": "1.0",
+  "default_service_version": "1.0.0",
   "supported": true,
   "deployment_grade": "production"
 }

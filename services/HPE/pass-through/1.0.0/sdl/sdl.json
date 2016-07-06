@@ -1,0 +1,70 @@
+{
+    "name": "pass-through",
+    "version": "1.0.0",
+    "vendor": "HPE",
+    "volumes": [],
+    "components": [
+        {
+            "name": "csm-side-car",
+            "version": "latest",
+            "vendor": "HPE",
+            "external_name": "pass-through-csm-side-car",
+            "image": "docker-registry.helion.space:443/catalog-service-manager/csm:latest",
+            "min_RAM_mb": 50,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": [],
+            "min_instances": 1,
+            "max_instances": 1,
+            "service_ports": [
+                {
+                    "name": "csm",
+                    "protocol": "TCP",
+                    "source_port": 8081,
+                    "target_port": 8081,
+                    "public": true
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "CSM_API_KEY"
+                },
+                {
+                    "name": "CSM_PARAMETERS"
+                },
+                {
+                    "name": "PASSTHROUGH_DATA"
+                }
+            ]
+        }
+    ],
+    "parameters": [
+        {
+            "name": "PASSTHROUGH_DATA",
+            "description": "Pass-through JSON data. This data will be made available to the app via vcap_services environment variable.",
+            "example": "{ \"name\" : \"value\" }",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "CSM_PARAMETERS",
+            "description": "Parameters for the csm side-car to be supplied to application on bind",
+            "default": "PASSTHROUGH_DATA",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        },
+        {
+            "name": "CSM_API_KEY",
+            "description": "CSM side-car api key",
+            "default": "csm-auth-key",
+            "example": "csm-auth-key",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        }
+    ]
+}

@@ -8,5 +8,5 @@
     "cassandra"
   ],
   "type": "local",
-  "default_service_version": "3.3"
+  "default_service_version": "3.3.0"
 }

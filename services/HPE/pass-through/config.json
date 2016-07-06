@@ -8,5 +8,5 @@
     "Pass-through"
   ],
   "type": "local",
-  "default_service_version": "1.0"
+  "default_service_version": "1.0.0"
 }

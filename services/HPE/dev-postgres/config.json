@@ -8,5 +8,5 @@
     "open source"
   ],
   "type": "local",
-  "default_service_version": "9.4"
+  "default_service_version": "9.4.0"
 }

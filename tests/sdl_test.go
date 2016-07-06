@@ -8,6 +8,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/stretchr/testify/assert"
 	"github.com/xeipuuv/gojsonschema"
 )
@@ -116,6 +117,7 @@ func TestSDLsAreValid(t *testing.T) {
 				//check contents match version and vendor directories
 				assert.Equal(t, vendor.Name(), s.Vendor, "vendor name does not match in sdl and directory")
 				assert.Contains(t, verSet, s.Version, "version in sdl does not match dir its in")
+				assert.True(t, govalidator.IsSemver(s.Version), "version specified in sdl is not of semver format")
 
 				//convert sdl parameters to componentParameter type for check
 				var sdlParams []componentParameter

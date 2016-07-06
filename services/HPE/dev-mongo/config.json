@@ -9,5 +9,5 @@
     "document store"
   ],
   "type": "local",
-"default_service_version": "3.0"
+"default_service_version": "3.0.0"
 }

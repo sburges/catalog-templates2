@@ -10,5 +10,5 @@
     "cluster"
   ],
   "type": "local",
-  "default_service_version": "5.6"
+  "default_service_version": "5.6.0"
 }
