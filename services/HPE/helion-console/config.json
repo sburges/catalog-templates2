@@ -1,0 +1,11 @@
+{
+  "description": "The Console provides the web interface for building and managing application in Stackato.",
+  "categories": [
+    "Console"
+  ],
+  "labels": [
+    "UserInterface"
+  ],
+  "type": "local",
+  "default_service_version": "0.0.90"
+}
