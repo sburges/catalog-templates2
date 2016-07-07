@@ -9,5 +9,7 @@
     "postgres"
   ],
   "type": "by-ref",
-  "default_service_version": "9.4.0"
+  "default_service_version": "9.4.0",
+  "supported": true,
+  "deployment_grade": "Production"
 }
