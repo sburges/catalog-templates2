@@ -110,12 +110,7 @@
       "description": "Postgres password used by the sidecar",
       "example": "changeme",
       "required": true,
-      "secret": false,
-      "generator":
-      {
-          "id": "postgres_password",
-          "type": "Password"
-      }
+      "secret": false
     },
     {
       "name": "POSTGRES_SSLMODE",
