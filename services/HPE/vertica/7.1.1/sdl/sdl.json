@@ -1,6 +1,7 @@
 {
     "name": "vertica",
-    "version": "7.1.1",
+    "sdl_version": "7.1.1",
+    "product_version": "7.1.1",
     "vendor": "HPE",
     "volumes": [
         {

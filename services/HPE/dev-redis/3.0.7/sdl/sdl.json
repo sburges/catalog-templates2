@@ -1,6 +1,7 @@
 {
   "name": "dev-redis",
-  "version": "3.0.7",
+  "sdl_version": "3.0.7",
+  "product_version": "3.0.7",
   "vendor": "HPE",
   "volumes": [],
   "components": [

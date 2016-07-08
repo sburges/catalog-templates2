@@ -1,6 +1,7 @@
 {
   "name": "dev-rabbitmq",
-  "version": "3.6.0-management",
+  "sdl_version": "3.6.0-management",
+  "product_version": "3.6.0-management",
   "vendor": "HPE",
   "volumes": [],
   "components": [

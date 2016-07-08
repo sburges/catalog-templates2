@@ -1,6 +1,7 @@
 {
     "name": "spark",
-    "version": "1.5.2",
+    "sdl_version": "1.5.2",
+    "product_version": "1.5.2",
     "vendor": "HPE",
     "components": [
         {
