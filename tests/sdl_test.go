@@ -57,6 +57,10 @@ func TestSDLsAreValid(t *testing.T) {
 	for _, vendor := range listDirs(t, servicesRoot) {
 		vendorPath := servicesRoot + "/" + vendor.Name()
 
+		if vendorPath == "../services/.DS_Store" {
+			continue
+		}
+
 		//load all services
 		for _, serviceName := range listDirs(t, vendorPath) {
 
@@ -66,7 +70,6 @@ func TestSDLsAreValid(t *testing.T) {
 			}
 
 			servicePath := filepath.Join(vendorPath, serviceName.Name())
-			verSet := versionSet(t, servicePath, len(listDirs(t, servicePath)))
 
 			configFilePath := filepath.Join(vendorPath, serviceName.Name(), "config.json")
 			configfile, configfileerr := ioutil.ReadFile(configFilePath)
@@ -81,12 +84,7 @@ func TestSDLsAreValid(t *testing.T) {
 			assert.NotEmpty(t, c.Description, "description must be defined")
 			assert.NotEmpty(t, c.Categories, "categories must be defined")
 			assert.NotEmpty(t, c.Labels, "labels must be defined")
-			if len(verSet) > 1 {
-				assert.NotEmpty(t, c.DefaultServiceVersion, "found more than 1 version and default_service_version is not set in config.json")
-			}
-			if c.DefaultServiceVersion != "" {
-				assert.Contains(t, verSet, c.DefaultServiceVersion, "version in service config does not match a dir in tree")
-			}
+
 			// DeploymentGrade should either be production or development or nil
 			if c.DeploymentGrade != "" {
 				deployGrade := strings.ToLower(c.DeploymentGrade)
@@ -94,85 +92,102 @@ func TestSDLsAreValid(t *testing.T) {
 			}
 
 			//subdirectories should be version of that service
-			for _, versionDir := range listDirs(t, servicePath) {
-				if !versionDir.IsDir() {
+			for _, productVersionDir := range listDirs(t, servicePath) {
+				if !productVersionDir.IsDir() {
 					continue
 				}
 
-				t.Log("Validating Service " + serviceName.Name() + " version " + versionDir.Name())
+				t.Log("Validating Service " + serviceName.Name() + " product version " + productVersionDir.Name())
 
-				sdlfile := filepath.Join(vendorPath, serviceName.Name(), versionDir.Name(), "sdl/sdl.json")
-				contents, fileerr := ioutil.ReadFile(sdlfile)
+				productVersionPath := filepath.Join(vendorPath, serviceName.Name(), productVersionDir.Name())
+				verSet := versionSet(t, productVersionPath, len(listDirs(t, productVersionPath)))
 
-				//sdl should exist
-				assert.Nil(t, fileerr, "Error loading sdl file for service "+serviceName.Name()+" version "+versionDir.Name())
-
-				//sdl should not be empty
-				assert.True(t, len(contents) > 0, "Found empty sdl file for service "+serviceName.Name()+" version "+versionDir.Name())
-
-				//the sdl json object
-				var s sdl
-				err := json.Unmarshal(contents, &s)
-				assert.Nil(t, err, "unmarshalling the sdl failed")
-
-				//check contents match version and vendor directories
-				assert.Equal(t, vendor.Name(), s.Vendor, "vendor name does not match in sdl and directory")
-				assert.Contains(t, verSet, s.SdlVersion, "version in sdl does not match dir its in")
-				assert.True(t, govalidator.IsSemver(s.SdlVersion), "SDL version specified in sdl is not of semver format")
-
-				//convert sdl parameters to componentParameter type for check
-				var sdlParams []componentParameter
-				for _, param := range s.Parameters {
-					sdlParams = append(sdlParams, componentParameter{Name: param.Name})
-
-					//check that there is no default value set for parameters that contain 'PASSWORD' in the name
-					if strings.Contains(strings.ToLower(param.Name), "password") {
-						assert.Empty(t, param.Default, "SDL parameters that are passwords should not have a default value set")
-					}
+				if len(verSet) > 1 {
+					assert.NotEmpty(t, c.DefaultServiceVersion, "found more than 1 version and default_service_version is not set in config.json")
 				}
 
-				var compParams []componentParameter
-				var compNames []string
-				for _, comp := range s.Components {
-					compNames = append(compNames, comp.Name)
-
-					if comp.Name == "csm-side-car" {
-						p := componentParameter{Name: "CSM_API_KEY"}
-						assert.Contains(t, comp.Parameters, p, "CSM_API_KEY is not present in csm-side-car component")
+				for _, sdlVersionDir := range listDirs(t, productVersionPath) {
+					if !sdlVersionDir.IsDir() {
+						continue
 					}
 
-					//log a warning if component has "ALL" capabilities set
-					for _, cap := range comp.Capabilities {
-						if cap == "ALL" {
-							t.Log("***** WARNING - " + comp.Name + " - should verify that ALL capabilities is required")
+					t.Log("Validating Service " + serviceName.Name() + " product version " + productVersionDir.Name() + " sdl version " + sdlVersionDir.Name())
+
+					sdlfile := filepath.Join(vendorPath, serviceName.Name(), productVersionDir.Name(), sdlVersionDir.Name(), "sdl/sdl.json")
+					contents, fileerr := ioutil.ReadFile(sdlfile)
+					t.Log("Reading Service" + sdlfile)
+
+					//sdl should exist
+					assert.Nil(t, fileerr, "Error loading sdl file for service "+serviceName.Name()+" version "+sdlVersionDir.Name())
+
+					//sdl should not be empty
+					assert.True(t, len(contents) > 0, "Found empty sdl file for service "+serviceName.Name()+" version "+sdlVersionDir.Name())
+
+					//the sdl json object
+					var s sdl
+					err := json.Unmarshal(contents, &s)
+					assert.Nil(t, err, "unmarshalling the sdl failed")
+
+					//check contents match version and vendor directories
+					assert.Equal(t, vendor.Name(), s.Vendor, "vendor name does not match in sdl and directory")
+					assert.Contains(t, verSet, s.SdlVersion, "version in sdl does not match dir its in")
+					assert.True(t, govalidator.IsSemver(s.SdlVersion), "SDL version specified in sdl is not of semver format")
+
+					//convert sdl parameters to componentParameter type for check
+					var sdlParams []componentParameter
+					for _, param := range s.Parameters {
+
+						sdlParams = append(sdlParams, componentParameter{Name: param.Name})
+
+						//check that there is no default value set for parameters that contain 'PASSWORD' in the name
+						if strings.Contains(strings.ToLower(param.Name), "password") {
+							assert.Empty(t, param.Default, "SDL parameters that are passwords should not have a default value set")
 						}
 					}
 
-					//check component parameters exist in parameter definition list
-					for _, param := range comp.Parameters {
-						assert.Contains(t, sdlParams, param, "component parameter not found in sdl parameter definition list")
-						compParams = append(compParams, param)
+					var compParams []componentParameter
+					var compNames []string
+					for _, comp := range s.Components {
+						compNames = append(compNames, comp.Name)
+
+						if comp.Name == "csm-side-car" {
+							p := componentParameter{Name: "CSM_API_KEY"}
+							assert.Contains(t, comp.Parameters, p, "CSM_API_KEY is not present in csm-side-car component")
+						}
+
+						//log a warning if component has "ALL" capabilities set
+						for _, cap := range comp.Capabilities {
+							if cap == "ALL" {
+								t.Log("***** WARNING - " + comp.Name + " - should verify that ALL capabilities is required")
+							}
+						}
+
+						//check component parameters exist in parameter definition list
+						for _, param := range comp.Parameters {
+							assert.Contains(t, sdlParams, param, "component parameter not found in sdl parameter definition list")
+							compParams = append(compParams, param)
+						}
 					}
-				}
 
-				//check that a csm-side-car container exists in components
-				assert.Contains(t, compNames, "csm-side-car", "SDL needs a csm-side-car defined")
+					//check that a csm-side-car container exists in components
+					assert.Contains(t, compNames, "csm-side-car", "SDL needs a csm-side-car defined")
 
-				//check the parameter name and description are not equal and that all SDL parameters are used in components
-				for _, param := range s.Parameters {
-					assert.NotEqual(t, param.Name, param.Description, "Parameter name and description should not be the same")
-					assert.Contains(t, compParams, componentParameter{Name: param.Name}, "SDL parameter defined but not used in a component")
-				}
+					//check the parameter name and description are not equal and that all SDL parameters are used in components
+					for _, param := range s.Parameters {
+						assert.NotEqual(t, param.Name, param.Description, "Parameter name and description should not be the same")
+						assert.Contains(t, compParams, componentParameter{Name: param.Name}, "SDL parameter defined but not used in a component")
+					}
 
-				//load the sdl and validate it against the schema
-				sdlLoader := gojsonschema.NewReferenceLoader("file://" + sdlfile)
-				sdlSchemaLoader := gojsonschema.NewReferenceLoader("file://./sdl_schema.json")
-				result, err := gojsonschema.Validate(sdlSchemaLoader, sdlLoader)
-				assert.Nil(t, err, "There was an unexpected error")
-				for _, err := range result.Errors() {
-					t.Log(err)
+					//load the sdl and validate it against the schema
+					sdlLoader := gojsonschema.NewReferenceLoader("file://" + sdlfile)
+					sdlSchemaLoader := gojsonschema.NewReferenceLoader("file://./sdl_schema.json")
+					result, err := gojsonschema.Validate(sdlSchemaLoader, sdlLoader)
+					assert.Nil(t, err, "There was an unexpected error")
+					for _, err := range result.Errors() {
+						t.Log(err)
+					}
+					assert.Equal(t, len(result.Errors()), 0, "There was an error validating the SDL schema")
 				}
-				assert.Equal(t, len(result.Errors()), 0, "There was an error validating the SDL schema")
 			}
 		}
 	}

@@ -1,0 +1,81 @@
+{
+    "name": "dockerregistry",
+    "product_version": "2.3.1",
+    "sdl_version": "1.0.0",
+    "vendor": "HPE",
+    "components": [
+        {
+            "name": "registry",
+            "version": "2.3.1",
+            "vendor": "Docker",
+            "external_name": "registry",
+            "image": "registry:2.3.1",
+            "min_RAM_mb": 256,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": [],
+            "labels": [
+                "Registry"
+            ],
+            "min_instances": 1,
+            "max_instances": 1,
+            "service_ports": [
+                {
+                    "name": "registry",
+                    "protocol": "TCP",
+                    "source_port": 5000,
+                    "target_port": 5000,
+                    "public": true
+                }
+            ]
+        },
+        {
+            "name": "csm-side-car",
+            "version": "1.0",
+            "vendor": "HPE",
+            "external_name": "registry-csm-side-car",
+            "image": "docker-registry.helion.space:443/service-catalog/catalog-service-manager:latest",
+            "min_RAM_mb": 50,
+            "min_disk_gb": 1,
+            "min_VCPU": 1,
+            "platform": "linux-x86_64",
+            "workload_type": "container",
+            "capabilities": [],
+            "affinity": [],
+            "labels": [
+                "registry",
+                "csm"
+            ],
+            "min_instances": 1,
+            "max_instances": 1,
+            "retry_count": 5,
+            "service_ports": [
+                {
+                    "name": "csm-api",
+                    "protocol": "TCP",
+                    "source_port": 8081,
+                    "target_port": 8081,
+                    "public": true
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "CSM_API_KEY"
+                }
+            ]
+        }
+    ],
+    "parameters": [
+        {
+            "name": "CSM_API_KEY",
+            "description": "CSM side-car api key",
+            "default": "csm-auth-token",
+            "example": "csm-auth-token",
+            "data_type": "string",
+            "required": true,
+            "secret": false
+        }
+    ]
+}

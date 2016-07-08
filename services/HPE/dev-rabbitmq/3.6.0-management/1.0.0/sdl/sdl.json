@@ -1,0 +1,171 @@
+{
+  "name": "dev-rabbitmq",
+  "product_version": "3.6.0-management",
+  "sdl_version": "1.0.0",
+  "vendor": "HPE",
+  "volumes": [],
+  "components": [
+    {
+      "name": "rabbitmq",
+      "external_name": "rabbitmq",
+      "workload_type": "container",
+      "version": "latest",
+      "vendor": "HPE",
+      "image": "docker-registry.helion.space:443/catalog-service-manager/csm-dev-rabbitmq-db:latest",
+      "min_RAM_mb": 1024,
+      "min_disk_gb": 1,
+      "min_VCPU": 2,
+      "platform": "linux-x86_64",
+      "capabilities": ["ALL"],
+      "affinity": [],
+      "labels": ["rabbitmq"],
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "docker",
+          "protocol": "TCP",
+          "source_port": 2375,
+          "target_port": 2375,
+          "public": false
+        },
+        {"name": "rabbitport1","protocol": "TCP","source_port": 32000,"target_port": 32000,"public": true},
+        {"name": "rabbitport2","protocol": "TCP","source_port": 32001,"target_port": 32001,"public": true},
+        {"name": "rabbitport3","protocol": "TCP","source_port": 32002,"target_port": 32002,"public": true},
+        {"name": "rabbitport4","protocol": "TCP","source_port": 32003,"target_port": 32003,"public": true},
+        {"name": "rabbitport5","protocol": "TCP","source_port": 32004,"target_port": 32004,"public": true},
+        {"name": "rabbitport6","protocol": "TCP","source_port": 32005,"target_port": 32005,"public": true},
+        {"name": "rabbitport7","protocol": "TCP","source_port": 32006,"target_port": 32006,"public": true},
+        {"name": "rabbitport8","protocol": "TCP","source_port": 32007,"target_port": 32007,"public": true},
+        {"name": "rabbitport9","protocol": "TCP","source_port": 32008,"target_port": 32008,"public": true},
+        {"name": "rabbitport10","protocol": "TCP","source_port": 32009,"target_port": 32009,"public": true},
+        {"name": "rabbitport11","protocol": "TCP","source_port": 32010,"target_port": 32010,"public": true},
+        {"name": "rabbitport12","protocol": "TCP","source_port": 32011,"target_port": 32011,"public": true},
+        {"name": "rabbitport13","protocol": "TCP","source_port": 32012,"target_port": 32012,"public": true},
+        {"name": "rabbitport14","protocol": "TCP","source_port": 32013,"target_port": 32013,"public": true},
+        {"name": "rabbitport15","protocol": "TCP","source_port": 32014,"target_port": 32014,"public": true},
+        {"name": "rabbitport16","protocol": "TCP","source_port": 32015,"target_port": 32015,"public": true},
+        {"name": "rabbitport17","protocol": "TCP","source_port": 32016,"target_port": 32016,"public": true},
+        {"name": "rabbitport18","protocol": "TCP","source_port": 32017,"target_port": 32017,"public": true},
+        {"name": "rabbitport19","protocol": "TCP","source_port": 32018,"target_port": 32018,"public": true},
+        {"name": "rabbitport20", "protocol": "TCP", "source_port": 32019, "target_port": 32019, "public": true}
+      ],
+      "volume_mounts": [],
+      "parameters": [
+        {
+          "name": "RABBIT_SERVICE_PORTS_POOL_START"
+        },
+        {
+          "name": "RABBIT_SERVICE_PORTS_POOL_END"
+        }
+      ]
+    },
+    {
+      "name": "csm-side-car",
+      "external_name": "rabbitmq-csm-side-car",
+      "workload_type": "container",
+      "version": "latest",
+      "vendor": "HPE",
+      "image": "docker-registry.helion.space:443/catalog-service-manager/csm-dev-rabbitmq:latest",
+      "min_RAM_mb": 50,
+      "min_disk_gb": 1,
+      "min_VCPU": 1,
+      "platform": "linux-x86_64",
+      "capabilities": [],
+      "affinity": [],
+      "labels": ["rabbitmq-csm"],
+      "min_instances": 1,
+      "max_instances": 1,
+      "service_ports": [
+        {
+          "name": "rabbitmq-csm",
+          "protocol": "TCP",
+          "source_port": 8081,
+          "target_port": 8081,
+          "public": true
+        }
+      ],
+      "volume_mounts": [],
+      "parameters": [
+        {
+          "name": "DOCKER_IMAGE"
+        },
+        {
+          "name": "CSM_API_KEY"
+        },
+        {
+          "name": "DOCKER_IMAGE_TAG"
+        },
+        {
+          "name": "RABBIT_SERVICE_PORTS_POOL_START"
+        },
+        {
+          "name": "RABBIT_SERVICE_PORTS_POOL_END"
+        },
+        {
+          "name": "CSM_EXT_TIMEOUT"
+        },
+        {
+          "name": "CSM_EXT_TIMEOUT_ERROR"
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "name": "DOCKER_IMAGE",
+      "description": "Docker image name",
+      "example": "rabbitmq",
+      "required": true,
+      "secret": false,
+      "default": "rabbitmq"
+    },
+    {
+      "name": "DOCKER_IMAGE_TAG",
+      "description": "Docker image tag",
+      "example": "3.6.0",
+      "required": true,
+      "secret": false,
+      "default": "3.6.0-management"
+    },
+    {
+      "name": "CSM_EXT_TIMEOUT",
+      "description": "CSM timeout in seconds. If you don't know what to put here, leave it default.",
+      "example": "120",
+      "required": true,
+      "secret": false,
+      "default": "120"
+    },
+    {
+      "name": "CSM_EXT_TIMEOUT_ERROR",
+      "description": "CSM timeout for errors in seconds. If you don't know what to put here, leave it default.",
+      "example": "30",
+      "required": true,
+      "secret": false,
+      "default": "30"
+    },
+    {
+      "name": "RABBIT_SERVICE_PORTS_POOL_START",
+      "description": "Service ports pool start",
+      "example": "32000",
+      "required": true,
+      "secret": false,
+      "default": "32000"
+    },
+    {
+      "name": "RABBIT_SERVICE_PORTS_POOL_END",
+      "description": "Service ports pool stop",
+      "example": "32500",
+      "required": true,
+      "secret": false,
+      "default": "32019"
+    },
+    {
+      "name": "CSM_API_KEY",
+      "description": "API Key used to authenticate consumers of the sidecar API",
+      "example": "my-secret-key",
+      "required": true,
+      "secret": false
+    }
+  ]
+}
