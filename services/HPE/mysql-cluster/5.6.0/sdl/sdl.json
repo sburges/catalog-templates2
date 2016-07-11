@@ -1,6 +1,7 @@
 {
     "name": "mysql-cluster",
-    "version": "5.6.0",
+    "product_version": "5.6.0",
+    "sdl_version": "5.6.0",
     "vendor": "HPE",
     "volumes": [
         {

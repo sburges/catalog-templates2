@@ -4,7 +4,10 @@
         "name": {
             "type": "string"
         },
-        "version": {
+        "product_version": {
+            "type": "string"
+        },
+        "sdl_version": {
             "type": "string"
         },
         "vendor": {
@@ -115,8 +118,8 @@
     },
     "required": [
         "name",
-        "version",
-        "vendor",
+        "product_version",
+        "sdl_version",
         "components"
     ],
     "additionalProperties": false
