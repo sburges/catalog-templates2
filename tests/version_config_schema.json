@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "disabled": {
+            "type": "object",
+            "properties": {
+                "vulnerability": {
+                    "type": "boolean"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "reason": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

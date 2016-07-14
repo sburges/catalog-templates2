@@ -1,0 +1,8 @@
+{
+    "disabled":
+    {
+        "vulnerability": true,
+        "link": "https://cloud.google.com/translate/docs/",
+        "reason": "This version of google translate is disabled."
+    }
+}
