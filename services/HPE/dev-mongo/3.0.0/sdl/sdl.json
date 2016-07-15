@@ -1,6 +1,7 @@
 {
   "name": "dev-mongo",
-  "version": "3.0.0",
+  "product_version": "3.0.0",
+  "sdl_version": "3.0.0",
   "vendor": "HPE",
   "volumes": [{
  		"name": "dev-mongo-volume",
@@ -100,7 +101,15 @@
       "description": "Mongo password used by the sidecar",
       "example": "changeme",
       "required": true,
-      "secret": false
+      "secret": false,
+      "generator":
+        {
+          "id": "MONGO_PASS",
+          "generate":
+            {
+              "type": "Password"
+            }
+        }
     },
     {
       "name": "CSM_API_KEY",
@@ -114,7 +123,15 @@
       "description": "Mongo password used by the server",
       "example": "changeme",
       "required": true,
-      "secret": false
+      "secret": false,
+      "generator":
+        {
+          "id": "MONGODB_PASS",
+          "generate":
+            {
+              "type": "Password"
+            }
+        }
     }
   ]
 }

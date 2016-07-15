@@ -1,6 +1,7 @@
 {
     "name": "dockerregistry",
-    "version": "2.3.1",
+    "product_version": "2.3.1",
+    "sdl_version": "2.3.1",
     "vendor": "HPE",
     "components": [
         {

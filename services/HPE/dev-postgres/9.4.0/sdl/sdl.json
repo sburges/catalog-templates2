@@ -1,6 +1,7 @@
 {
   "name": "dev-postgres",
-  "version": "9.4.0",
+  "product_version": "9.4.0",
+  "sdl_version": "9.4.0",
   "vendor": "HPE",
   "volumes": [{
  		"name": "dev-postgres-volume",
@@ -110,7 +111,15 @@
       "description": "Postgres password used by the sidecar",
       "example": "changeme",
       "required": true,
-      "secret": false
+      "secret": false,
+      "generator":
+        {
+          "id": "POSTGRES_PASSWORD",
+          "generate":
+            {
+              "type": "Password"
+            }
+        }
     },
     {
       "name": "POSTGRES_SSLMODE",

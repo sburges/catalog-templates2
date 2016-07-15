@@ -1,6 +1,7 @@
 {
   "name": "dev-mysql",
-  "version": "5.5.0",
+  "product_version": "5.5.0",
+  "sdl_version": "5.5.0",
   "vendor": "HPE",
   "volumes": [{
  		"name": "dev-mysql-volume",
@@ -89,7 +90,15 @@
       "description": "MySQL root password",
       "example": "changeme",
       "required": true,
-      "secret": false
+      "secret": false,
+      "generator":
+        {
+          "id": "MYSQL_ROOT_PASSWORD",
+          "generate":
+            {
+              "type": "Password"
+            }
+        }
     },
     {
       "name": "MYSQL_USER",
@@ -104,7 +113,15 @@
       "description": "MySQL password used by the sidecar",
       "example": "changeme",
       "required": true,
-      "secret": false
+      "secret": false,
+      "generator":
+        {
+          "id": "MYSQL_PASS",
+          "generate":
+            {
+              "type": "Password"
+            }
+        }
     },
     {
       "name": "CSM_API_KEY",

@@ -14,11 +14,12 @@ import (
 )
 
 type sdl struct {
-	Name       string      `json:"name"`
-	Version    string      `json:"version"`
-	Vendor     string      `json:"vendor"`
-	Components []component `json:"components"`
-	Parameters []parameter `json:"parameters"`
+	Name           string      `json:"name"`
+	ProductVersion string      `json:"product_version"`
+	SdlVersion     string      `json:"sdl_version"`
+	Vendor         string      `json:"vendor"`
+	Components     []component `json:"components"`
+	Parameters     []parameter `json:"parameters"`
 }
 
 type component struct {
@@ -116,8 +117,8 @@ func TestSDLsAreValid(t *testing.T) {
 
 				//check contents match version and vendor directories
 				assert.Equal(t, vendor.Name(), s.Vendor, "vendor name does not match in sdl and directory")
-				assert.Contains(t, verSet, s.Version, "version in sdl does not match dir its in")
-				assert.True(t, govalidator.IsSemver(s.Version), "version specified in sdl is not of semver format")
+				assert.Contains(t, verSet, s.SdlVersion, "version in sdl does not match dir its in")
+				assert.True(t, govalidator.IsSemver(s.SdlVersion), "SDL version specified in sdl is not of semver format")
 
 				//convert sdl parameters to componentParameter type for check
 				var sdlParams []componentParameter
